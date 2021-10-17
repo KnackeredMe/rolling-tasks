@@ -1,24 +1,28 @@
 {
   "files": {
     "main.css": "/rolling-tasks/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/rolling-tasks/static/js/main.72a7620e.chunk.js",
-    "main.js.map": "/rolling-tasks/static/js/main.72a7620e.chunk.js.map",
-    "runtime-main.js": "/rolling-tasks/static/js/runtime-main.876caffc.js",
-    "runtime-main.js.map": "/rolling-tasks/static/js/runtime-main.876caffc.js.map",
-    "static/js/2.fab1acac.chunk.js": "/rolling-tasks/static/js/2.fab1acac.chunk.js",
-    "static/js/2.fab1acac.chunk.js.map": "/rolling-tasks/static/js/2.fab1acac.chunk.js.map",
-    "static/js/3.458c2791.chunk.js": "/rolling-tasks/static/js/3.458c2791.chunk.js",
-    "static/js/3.458c2791.chunk.js.map": "/rolling-tasks/static/js/3.458c2791.chunk.js.map",
+    "main.js": "/rolling-tasks/static/js/main.e8e8c21a.chunk.js",
+    "main.js.map": "/rolling-tasks/static/js/main.e8e8c21a.chunk.js.map",
+    "runtime-main.js": "/rolling-tasks/static/js/runtime-main.37144b25.js",
+    "runtime-main.js.map": "/rolling-tasks/static/js/runtime-main.37144b25.js.map",
+    "static/js/2.9013b401.chunk.js": "/rolling-tasks/static/js/2.9013b401.chunk.js",
+    "static/js/2.9013b401.chunk.js.map": "/rolling-tasks/static/js/2.9013b401.chunk.js.map",
+    "static/js/3.0b12760d.chunk.js": "/rolling-tasks/static/js/3.0b12760d.chunk.js",
+    "static/js/3.0b12760d.chunk.js.map": "/rolling-tasks/static/js/3.0b12760d.chunk.js.map",
     "index.html": "/rolling-tasks/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/rolling-tasks/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.fab1acac.chunk.js.LICENSE.txt": "/rolling-tasks/static/js/2.fab1acac.chunk.js.LICENSE.txt",
+    "static/js/2.9013b401.chunk.js.LICENSE.txt": "/rolling-tasks/static/js/2.9013b401.chunk.js.LICENSE.txt",
+    "static/media/Rectangle4.28f1ebbf.png": "/rolling-tasks/static/media/Rectangle4.28f1ebbf.png",
+    "static/media/Rectangle5.4671b6bf.png": "/rolling-tasks/static/media/Rectangle5.4671b6bf.png",
+    "static/media/Rectangle6.d49249a2.png": "/rolling-tasks/static/media/Rectangle6.d49249a2.png",
+    "static/media/Rectangle7.5e2ea68e.png": "/rolling-tasks/static/media/Rectangle7.5e2ea68e.png",
     "static/media/landingBackground.de39e886.jpg": "/rolling-tasks/static/media/landingBackground.de39e886.jpg",
     "static/media/logo.45675fd0.png": "/rolling-tasks/static/media/logo.45675fd0.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.876caffc.js",
-    "static/js/2.fab1acac.chunk.js",
+    "static/js/runtime-main.37144b25.js",
+    "static/js/2.9013b401.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.72a7620e.chunk.js"
+    "static/js/main.e8e8c21a.chunk.js"
   ]
 }
