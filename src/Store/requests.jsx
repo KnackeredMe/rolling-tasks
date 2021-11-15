@@ -1,13 +1,31 @@
 import axios from 'axios';
 
-export const getBoard = async () => {
-    const response = await axios.get(`http://185.199.99.158:8085/boards/9e6b17e7-360b-492a-ba9a-ae8076d8b665`, {
+export const getBoard = async (boardId) => {
+    const response = await axios.get(`http://185.199.99.158:8085/boards/${boardId}`, {
         method: 'GET',
         headers: {
-            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
-            withCredentials: true,
-            mode: 'no-cors',
     }});
     console.log(response)
+    return response;
+}
+
+export const getRows = async () => {
+    const response = await axios.get(`http://185.199.99.158:8085/rows`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }});
+    console.log(response)
+    return response;
+}
+
+export const getTickets = async () => {
+    const response = await axios.get(`http://185.199.99.158:8085/tickets`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }});
+    console.log(response)
+    return response;
 }

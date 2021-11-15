@@ -3,10 +3,11 @@ import {StyledTicketItem} from "./TicketItem.styled";
 import {StyledInfoBar} from "./InfoBar/InfoBar.styled";
 import userIcon from "../../../Assets/Images/userIcon.png"
 
-function TicketItem(props) {
+function TicketItem(ticket) {
+    console.log(ticket)
     return (
         <StyledTicketItem>
-            <h3 className={'ticketName'}>Investigate how to create events in Google callendar</h3>
+            <h3 className={'ticketName'}>{ticket.ticket.title}</h3>
             <ul className={'ticketInfo'}>
                 <li className={'ticketInfoItem'}>
                     <StyledInfoBar/>
