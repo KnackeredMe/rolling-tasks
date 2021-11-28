@@ -22,5 +22,44 @@ export const StyledStatusRow = styled.div`
       z-index: 1;
       display: flex;
     }
+
+  .deleteButton {
+    position: absolute;
+    top: 50px;
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    svg {
+      fill: white;
+    }
+  }
+  .editButton {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    svg {
+      fill: white;
+    }
+  }
+  
+    &:hover {
+      .deleteButton {
+        transition: opacity 0.2s ease-in-out;
+        opacity: 1;
+      }
+      .editButton {
+        transition: opacity 0.2s ease-in-out;
+        opacity: 1;
+      }
+    }
   
 `

@@ -1,13 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyledStatusRow} from "./StatusRow.styled";
 import TicketItem from "../TicketItem/TicketItem";
-import {getTickets} from "../../../Store/requests";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
 
-function StatusRow({rowId, rowName, rowColor}) {
-    const [tickets, setTickets] = useState([])
-    useEffect(() => {
-        getTickets().then(tickets => setTickets(tickets.data))
-    }, [])
+function StatusRow({rowId, rowName, rowColor, tickets, deleteRow}) {
     return (
         <StyledStatusRow rowColor={rowColor}>
             <h2 className={'rowName'}>{rowName}</h2>
@@ -18,6 +15,8 @@ function StatusRow({rowId, rowName, rowColor}) {
                     )}
                 </ul>
             )}
+            <button className={'deleteButton'} onClick={() => deleteRow(rowId)}><DeleteOutlineIcon/></button>
+            <button className={'editButton'} onClick={() => {}}><EditIcon/></button>
         </StyledStatusRow>
     );
 }
