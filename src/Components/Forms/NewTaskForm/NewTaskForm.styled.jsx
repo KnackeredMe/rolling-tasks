@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import {Dialog} from "@mui/material";
-import addList from '../../../Assets/Images/addList.png'
+import addTask from '../../../Assets/Images/addTask.png'
 
-export const StyledNewRowForm= styled(Dialog)`
+export const StyledNewTaskForm = styled(Dialog)`
     .MuiPaper-root {
-      background-image: url(${addList});
+      background-image: url(${addTask});
       background-size: cover;
       min-height: 500px;
       min-width: 500px;
@@ -13,8 +13,8 @@ export const StyledNewRowForm= styled(Dialog)`
   
     .content {
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
     }
   
     .close {
@@ -58,6 +58,13 @@ export const StyledNewRowForm= styled(Dialog)`
       }
     }
   
+    .select {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      margin-top: 10px;
+    }
+  
     .row-name {
       display: flex;
       flex-direction: column;
@@ -73,5 +80,14 @@ export const StyledNewRowForm= styled(Dialog)`
       &:hover {
         background-color: transparent;
       }
+    }
+
+    fieldset {
+      border: none;
+    }
+  
+    .MuiSelect-select {
+      display: flex;
+      align-items: center;
     }
 `

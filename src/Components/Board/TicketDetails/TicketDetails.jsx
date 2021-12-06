@@ -3,13 +3,15 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import {StyledNewRowForm} from "./NewRowForm.styled";
+import {StyledTicketDetails} from "./TicketDetails.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-export default function NewRowForm({open, handleClose, createRow}) {
+export default function TicketDetails({open, handleClose}) {
     const [rowName, setRowName] = useState('');
     const [rowColor, setRowColor] = useState('');
+
+    useEffect(() => console.log(open), [open])
 
     const onChangeName = (event) => {
         setRowName(event.target.value);
@@ -20,7 +22,7 @@ export default function NewRowForm({open, handleClose, createRow}) {
     }
 
     return (
-        <StyledNewRowForm open={open}>
+        <StyledTicketDetails open={open}>
             <DialogContent className={'content'}>
                 <div className={'row-name'}>
                     <label className={'row-name-label'}>Name</label>
@@ -48,11 +50,11 @@ export default function NewRowForm({open, handleClose, createRow}) {
                 </div>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => {createRow(rowName, rowColor); handleClose()}}>Create</Button>
+                <Button onClick={() => {handleClose()}}>Create</Button>
                 <Button className={'close'} onClick={() => handleClose()}>
                     <img src={closeIcon} alt={'close icon'}/>
                 </Button>
             </DialogActions>
-        </StyledNewRowForm>
+        </StyledTicketDetails>
     );
 }

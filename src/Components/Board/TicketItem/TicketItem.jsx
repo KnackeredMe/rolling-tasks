@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyledTicketItem} from "./TicketItem.styled";
 import {StyledInfoBar} from "./InfoBar/InfoBar.styled";
 import userIcon from "../../../Assets/Images/userIcon.png"
 
 function TicketItem(ticket) {
-    console.log(ticket)
     return (
         <StyledTicketItem>
             <h3 className={'ticketName'}>{ticket.ticket.title}</h3>
@@ -26,7 +25,6 @@ function TicketItem(ticket) {
                     <p>Assignee</p>
                 </li>
             </ul>
-
         </StyledTicketItem>
     );
 }

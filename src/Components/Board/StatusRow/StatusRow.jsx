@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyledStatusRow} from "./StatusRow.styled";
 import TicketItem from "../TicketItem/TicketItem";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
+import TicketDetails from "../TicketDetails/TicketDetails";
 
 function StatusRow({rowId, rowName, rowColor, tickets, deleteRow}) {
     return (
