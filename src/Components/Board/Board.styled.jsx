@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled"
 import {defaultColors} from "../../Utils/defaultColors";
 import chatIcon from "../../Assets/Images/chatIcon.png";
 
