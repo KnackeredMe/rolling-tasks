@@ -12,8 +12,12 @@ class App extends Component {
             <Header/>
             <Content>
                 <Switch>
-                    <Route path={'/board'} component={Board}/>
-                    <Route path={'/'} component={Landing}/>
+                    <Route exact path="/">
+                        <Landing/>
+                    </Route>
+                    <Route path="/board">
+                        <Board/>
+                    </Route>
                 </Switch>
             </Content>
         </div>

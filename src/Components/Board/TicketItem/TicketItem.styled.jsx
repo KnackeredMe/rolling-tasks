@@ -30,4 +30,8 @@ export const StyledTicketItem = styled.li`
       width: 20px;
       height: 20px;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 `

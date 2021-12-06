@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import {StyledTicketDetails} from "./TicketDetails.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
 
 export default function TicketDetails({open, handleClose}) {
     const [rowName, setRowName] = useState('');
@@ -50,10 +51,10 @@ export default function TicketDetails({open, handleClose}) {
                 </div>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => {handleClose()}}>Create</Button>
-                <Button className={'close'} onClick={() => handleClose()}>
+                <Button>Create</Button>
+                <Link to={'/board'} className={'close'}>
                     <img src={closeIcon} alt={'close icon'}/>
-                </Button>
+                </Link>
             </DialogActions>
         </StyledTicketDetails>
     );
