@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import {Dialog} from "@mui/material";
 import addList from '../../../Assets/Images/addList.png'
 
-export const StyledNewRowForm= styled(Dialog)`
+export const StyledTicketDetails= styled(Dialog)`
     .MuiPaper-root {
       background-image: url(${addList});
       background-size: cover;
