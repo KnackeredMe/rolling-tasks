@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 
 export const StyledLandingCard = styled.div`
+    background-image: url(${props => props.imageUrl});
+    background-size: cover;
     width: 200px;
     height: 200px;
     position: absolute;
@@ -8,15 +10,12 @@ export const StyledLandingCard = styled.div`
     bottom: ${props => props.bottom};
     left: ${props =>props.left};
     right: ${props => props.right};
-    .background {
-      width: 100%;
-      height: 100%;
-    }
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2);
     .overlay {
       background: rgba(255, 255, 255, 0.5);
       position: absolute;
-      width: 99%;
-      height: 98%;
+      width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
       display: flex;

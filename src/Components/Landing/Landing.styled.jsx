@@ -6,7 +6,7 @@ export const StyledLanding = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: ${window.innerHeight - 75}px;
+    height: 100%;
     position: relative;
 
     .landingText {

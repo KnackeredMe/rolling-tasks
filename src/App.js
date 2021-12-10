@@ -12,7 +12,7 @@ class App extends Component {
             <Header/>
             <Content>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/rolling-tasks">
                         <Landing/>
                     </Route>
                     <Route path="/board">

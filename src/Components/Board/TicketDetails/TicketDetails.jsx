@@ -6,48 +6,56 @@ import DialogContent from '@mui/material/DialogContent';
 import {StyledTicketDetails} from "./TicketDetails.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useEffect, useState} from "react";
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {getTicket, getTickets} from "../../../Store/requests";
 
-export default function TicketDetails({open, handleClose}) {
-    const [rowName, setRowName] = useState('');
-    const [rowColor, setRowColor] = useState('');
+export default function TicketDetails({open, ticket}) {
+    const [id, setId] = useState('');
+    const [type, setType] = useState('');
+    const [title, setTitle] = useState('');
+    const [priority, setPriority] = useState('');
+    const [position, setPosition] = useState('');
+    const [complexity, setComplexity] = useState('');
+    const history = useHistory();
 
-    useEffect(() => console.log(open), [open])
+
+    useEffect(() => {
+        if (!ticket) {
+            const historyId = history.location.pathname.split('/').slice(-1)[0];
+            getTicket(historyId).then(result => {
+                ticket = result.data;
+            })
+        }
+        setId(ticket.id);
+        setType(ticket.type);
+        setPriority(ticket.priority);
+        setTitle(ticket.title);
+        setPosition(ticket.position);
+        setComplexity(ticket.complexity);
+    })
 
     const onChangeName = (event) => {
-        setRowName(event.target.value);
-    }
-
-    const onChangeColor = (event) => {
-        setRowColor(event.target.value)
     }
 
     return (
         <StyledTicketDetails open={open}>
+            <h1>{title}</h1>
             <DialogContent className={'content'}>
-                <div className={'row-name'}>
-                    <label className={'row-name-label'}>Name</label>
-                    <TextField className={'row-name-input'}
+                <div className={'description'}>
+                    <label className={'description-label'}>Description</label>
+                    <TextField className={'description-input'}
                                autoFocus
                                margin="dense"
                                id="name"
                                type="text"
                                fullWidth
+                               placeholder={'Type here...'}
                                variant="standard"
                                onChange={onChangeName}
                     />
                 </div>
-                <div className={'row-color'}>
-                    <label className={'row-color-label'}>Color</label>
-                    <TextField className={'row-color-input'}
-                               autoFocus
-                               margin="dense"
-                               id="color"
-                               type="color"
-                               variant="standard"
-                               defaultValue="#000000"
-                               onChange={onChangeColor}
-                    />
+                <div className={'edit'}>
+                    <label className={'edit-label'}>Edit</label>
                 </div>
             </DialogContent>
             <DialogActions>

@@ -9,7 +9,6 @@ import {useState} from "react";
 import {MenuItem, Select} from "@mui/material";
 import BugReportIcon from '@mui/icons-material/BugReport';
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import BoltIcon from '@mui/icons-material/Bolt';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';

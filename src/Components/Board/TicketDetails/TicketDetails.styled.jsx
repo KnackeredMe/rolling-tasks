@@ -1,25 +1,23 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import {Dialog} from "@mui/material";
-import addList from '../../../Assets/Images/addList.png'
 
 export const StyledTicketDetails= styled(Dialog)`
     .MuiPaper-root {
-      background-image: url(${addList});
       background-size: cover;
-      min-height: 500px;
-      min-width: 500px;
+      min-height: 700px;
+      min-width: 700px;
       position: relative;
+      padding: 30px;
     }
   
     .content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   
     .close {
       position: absolute;
-      right: 0;
+      right: 10px;
       top: 10px;
       img {
         width: 20px;
@@ -37,12 +35,10 @@ export const StyledTicketDetails= styled(Dialog)`
     }
   
     .MuiInput-root {
-      margin-top: 20px;
-      padding-left: 10px;
-      background-color: white;
-      height: 40px;
-      box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 5px;
+      border: none;
+      input {
+        border: none;
+      }
       &::before, &::after {
         display: none;
       }
