@@ -15,76 +15,38 @@ import BlockIcon from '@mui/icons-material/Block';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CheckIcon from '@mui/icons-material/Check';
 import {SvgIcon} from "@mui/material";
-
-const iconDict = {
-    BUG: {
-        icon: BugReportIcon,
-        color: 'red',
-    },
-    TASK: {
-        icon: AddTaskIcon,
-        color: 'blue',
-    },
-    'SUBTASK': {
-        icon: CheckIcon,
-        color: 'blue',
-    },
-    'SPIKE': {
-        icon: ArrowUpwardIcon,
-        color: 'blue',
-    },
-    'EPIC': {
-        icon: BoltIcon,
-        color: 'orange',
-    },
-    'STORY': {
-        icon: LightbulbIcon,
-        color: 'orange',
-    },
-    'BLOCKER': {
-        icon:  BlockIcon,
-        color: 'red',
-    },
-    'HIGH': {
-        icon: KeyboardDoubleArrowUpIcon,
-        color: 'red',
-    },
-    'MEDIUM': {
-        icon: KeyboardArrowUpIcon,
-        color: 'red',
-    },
-    'LOW': {
-        icon: KeyboardArrowDownIcon,
-        color: 'green',
-    },
-    'HARD': {
-        icon: KeyboardDoubleArrowUpIcon,
-        color: 'red',
-    },
-}
+import {iconDict} from "../../../Utils/constants";
 
 function TicketItem(ticket) {
     useEffect(() => {
-        console.log(ticket.ticket)
     }, [])
     return (
-        <StyledTicketItem>
+        <StyledTicketItem shadowColor={iconDict[ticket.ticket.type]?.color}>
             <Link to={`/board/${ticket.ticket.id}`}>
-                <h3 className={'ticketName'}>{ticket.ticket.title}</h3>
-                <ul className={'ticketInfo'}>
-                    <li className={'ticketInfoItem'}>
-                        <SvgIcon component={iconDict[ticket.ticket.type]?.icon} style={{fill: iconDict[ticket.ticket.type]?.color}}/>
+                <h3 className={'ticket__name'}>{ticket.ticket.title}</h3>
+                <ul className={'ticket__info'}>
+                    <li className={'ticket__info-item'}>
+                        <div className={'ticket__info-value'}>
+                            <SvgIcon className={'ticket__info-icon'} component={iconDict[ticket.ticket.type]?.icon} style={{fill: iconDict[ticket.ticket.type]?.color}}/>
+                            <p style={{color: iconDict[ticket.ticket.type]?.color}}>{ticket.ticket.type}</p>
+                        </div>
                         <p>Type</p>
                     </li>
-                    <li className={'ticketInfoItem'}>
-                        <SvgIcon component={iconDict[ticket.ticket.priority]?.icon} style={{fill: iconDict[ticket.ticket.priority]?.color}}/>
+                    <li className={'ticket__info-item'}>
+                        <div className={'ticket__info-value'}>
+                            <SvgIcon className={'ticket__info-icon'} component={iconDict[ticket.ticket.priority]?.icon} style={{fill: iconDict[ticket.ticket.priority]?.color}}/>
+                            <p style={{color: iconDict[ticket.ticket.priority]?.color}}>{ticket.ticket.priority}</p>
+                        </div>
                         <p>Priority</p>
                     </li>
-                    <li className={'ticketInfoItem'}>
-                        <SvgIcon component={iconDict[ticket.ticket.complexity]?.icon} style={{fill: iconDict[ticket.ticket.complexity]?.color}}/>
+                    <li className={'ticket__info-item'}>
+                        <div className={'ticket__info-value'}>
+                            <SvgIcon className={'ticket__info-icon'} component={iconDict[ticket.ticket.complexity]?.icon} style={{fill: iconDict[ticket.ticket.complexity]?.color}}/>
+                            <p style={{color: iconDict[ticket.ticket.complexity]?.color}}>{ticket.ticket.complexity}</p>
+                        </div>
                         <p>Complexity</p>
                     </li>
-                    <li className={'ticketInfoItem'}>
+                    <li className={'ticket__info-item'}>
                         <img className={'userPhoto'} src={userIcon} alt={'user'}/>
                         <p>Assignee</p>
                     </li>

@@ -29,7 +29,7 @@ export class Header extends Component {
                     <Logo/>
                     <Navigation>
                         <div className={'navItem'}>
-                            <button onClick={this.openRegistrationForm}>Sign Up</button>
+                            <a onClick={this.openRegistrationForm}>Sign Up</a>
                         </div>
                         <div className={'navItem'}>
                             <a className={'activeLink'} href={'google.com'}>Roll In</a>

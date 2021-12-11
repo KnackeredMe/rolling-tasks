@@ -1,43 +1,44 @@
 import axios from 'axios';
+import {API_URL, TEMP_JWT_TOKEN} from "../Utils/constants";
 
 export const getBoard = async (boardId) => {
-    const response = await axios.get(`http://185.199.99.158:8085/boards/${boardId}`, {
+    const response = await axios.get(`${API_URL}/boards/${boardId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
     }});
     console.log(response);
     return response;
 }
 
 export const getRows = async () => {
-    const response = await axios.get(`http://185.199.99.158:8085/rows`, {
+    const response = await axios.get(`${API_URL}/rows`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
 }
 
 export const getTickets = async () => {
-    const response = await axios.get(`http://185.199.99.158:8085/tickets`, {
+    const response = await axios.get(`${API_URL}/tickets`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
 }
 
 export const postRow = async (body) => {
-    const response = await axios.post(`http://185.199.99.158:8085/rows`, body, {
+    const response = await axios.post(`${API_URL}/rows`, body, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
@@ -45,30 +46,30 @@ export const postRow = async (body) => {
 
 export const getTicket = async (ticketId) => {
     console.log(ticketId)
-    const response = await axios.get(`http://185.199.99.158:8085/tickets/${ticketId}`, {
+    const response = await axios.get(`${API_URL}/tickets/${ticketId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
 }
 
 export const postTickets = async (body) => {
-    const response = await axios.post(`http://185.199.99.158:8085/tickets`, body, {
+    const response = await axios.post(`${API_URL}/tickets`, body, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
 }
 
 export const deleteRow = async (rowId) => {
-    const response = await axios.delete(`http://185.199.99.158:8085/rows/${rowId}`, {
+    const response = await axios.delete(`${API_URL}/rows/${rowId}`, {
         headers: {
-            'Authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0',
+            'Authorization' : TEMP_JWT_TOKEN,
         }});
     console.log(response);
     return response;
