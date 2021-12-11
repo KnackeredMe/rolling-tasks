@@ -32,7 +32,7 @@ export class Header extends Component {
                             <a onClick={this.openRegistrationForm}>Sign Up</a>
                         </div>
                         <div className={'navItem'}>
-                            <a className={'activeLink'} href={'google.com'}>Roll In</a>
+                            <a className={'activeLink'} href={''}>Roll In</a>
                         </div>
                     </Navigation>
 

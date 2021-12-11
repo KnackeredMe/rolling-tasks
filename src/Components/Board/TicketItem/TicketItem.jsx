@@ -1,19 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyledTicketItem} from "./TicketItem.styled";
-import {StyledInfoBar} from "./InfoBar/InfoBar.styled";
 import userIcon from "../../../Assets/Images/userIcon.png"
 import TicketDetails from "../TicketDetails/TicketDetails";
 import {Link, Route} from 'react-router-dom';
-import BugReportIcon from '@mui/icons-material/BugReport';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import BoltIcon from '@mui/icons-material/Bolt';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import BlockIcon from '@mui/icons-material/Block';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import CheckIcon from '@mui/icons-material/Check';
 import {SvgIcon} from "@mui/material";
 import {iconDict} from "../../../Utils/constants";
 
