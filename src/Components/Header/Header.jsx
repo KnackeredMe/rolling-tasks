@@ -4,6 +4,7 @@ import {Logo} from "../Logo/Logo";
 import {StyledHeader} from "./Header.styled";
 import Navigation from "./Navigation/Navigation";
 import RegistrationForm from "../Forms/RegistrationForm/RegistrationForm";
+import {Link} from "react-router-dom";
 
 
 export class Header extends Component {
@@ -26,7 +27,7 @@ export class Header extends Component {
         return (
             <StyledHeader>
                 <Container>
-                    <Logo/>
+                    <Link to={"/rolling-tasks"}><Logo/></Link>
                     <Navigation>
                         <div className={'navItem'}>
                             <a onClick={this.openRegistrationForm}>Sign Up</a>
