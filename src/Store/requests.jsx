@@ -66,6 +66,27 @@ export const postTickets = async (body) => {
     return response;
 }
 
+export const putTicket = async (body, ticketId) => {
+    const response = await axios.put(`${API_URL}/tickets/${ticketId}`, body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : TEMP_JWT_TOKEN,
+        }});
+    console.log(response);
+    return response;
+}
+
+
+export const deleteTicket = async (ticketId) => {
+    const response = await axios.delete(`${API_URL}/tickets/${ticketId}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : TEMP_JWT_TOKEN,
+        }});
+    console.log(response);
+    return response;
+}
+
 export const deleteRow = async (rowId) => {
     const response = await axios.delete(`${API_URL}/rows/${rowId}`, {
         headers: {

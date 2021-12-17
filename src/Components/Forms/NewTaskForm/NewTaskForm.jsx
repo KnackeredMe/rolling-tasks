@@ -17,6 +17,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import BlockIcon from '@mui/icons-material/Block';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CheckIcon from '@mui/icons-material/Check';
+import userIcon from '../../../Assets/Images/userIcon.png'
 
 export default function NewTaskForm({open, handleClose, createTask, rows}) {
     const [name, setName] = useState('');
@@ -72,12 +73,12 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangeType}
                         displayEmpty
                     >
-                        <MenuItem className={'select-item'} value={'BUG'}>Bug<BugReportIcon style={{fill: "red"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'TASK'}>Task<AddTaskIcon style={{fill: "blue"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'SUBTASK'}>Subtask<CheckIcon style={{fill: "blue"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'SPIKE'}>Spike<ArrowUpwardIcon style={{fill: "green"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'EPIC'}>Epic<BoltIcon style={{fill: "orange"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'STORY'}>Story<LightbulbIcon style={{fill: "orange"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'BUG'}>Bug<BugReportIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'TASK'}>Task<AddTaskIcon style={{fill: "blue", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'SUBTASK'}>Subtask<CheckIcon style={{fill: "blue", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'SPIKE'}>Spike<ArrowUpwardIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'EPIC'}>Epic<BoltIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'STORY'}>Story<LightbulbIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
                     </Select>
                 </div>
                 <div className={'task-priority select'}>
@@ -87,10 +88,10 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangePriority}
                         displayEmpty
                     >
-                        <MenuItem className={'select-item'} value={'BLOCKER'}>Blocker<BlockIcon style={{fill: "red"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'HIGH'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'BLOCKER'}>Blocker<BlockIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'HIGH'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
                     </Select>
                 </div>
                 <div className={'task-complexity select'}>
@@ -100,9 +101,9 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangeComplexity}
                         displayEmpty
                     >
-                        <MenuItem className={'select-item'} value={'HARD'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'HARD'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
                     </Select>
                 </div>
                 <div className={'task-assignee select'}>
@@ -112,11 +113,11 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangeAssignee}
                         displayEmpty
                     >
-                        <MenuItem value={'User 1'}>User 1</MenuItem>
-                        <MenuItem value={'User 2'}>User 2</MenuItem>
-                        <MenuItem value={'User 3'}>User 3</MenuItem>
-                        <MenuItem value={'User 4'}>User 4</MenuItem>
-                        <MenuItem value={'User 5'}>User 5</MenuItem>
+                        <MenuItem value={'User 1'}>User 1<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem value={'User 2'}>User 2<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem value={'User 3'}>User 3<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem value={'User 4'}>User 4<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem value={'User 5'}>User 5<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
                     </Select>
                 </div>
                 <div className={'task-row select'}>
@@ -126,7 +127,7 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangeRow}
                         displayEmpty>
                         {
-                            rows.map(row =>
+                            rows && rows.map(row =>
                                 <MenuItem key={row.id} value={row.id}>{row.title}
                                     <span className={'select-item-color'} style={{backgroundColor: row.color, width: '15px', height: '15px', borderRadius: '3px', marginLeft: '5px'}}> </span>
                                 </MenuItem>

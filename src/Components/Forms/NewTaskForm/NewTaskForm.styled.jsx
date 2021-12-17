@@ -90,4 +90,11 @@ export const StyledNewTaskForm = styled(Dialog)`
       display: flex;
       align-items: center;
     }
+  
+    .select-item {
+      svg {
+        margin-left: auto;
+      }
+    }
+    
 `
