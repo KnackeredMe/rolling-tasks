@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const StyledTicketItem = styled.li`
-    width: 200px;
+    min-width: 200px;
     background-color: white;
     list-style: none;
     z-index: 2;

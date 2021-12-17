@@ -196,7 +196,7 @@ export default function TicketDetails({open, ticket}) {
                             >
                                 <MenuItem className={'select-item'} value={'HARD'}>Hard<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
                                 <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'EASY'}>Easy<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
                             </Select>
                             <label className={'task-complexity-label'}>Complexity</label>
                         </div>

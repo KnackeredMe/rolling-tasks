@@ -2,30 +2,35 @@ import styled from '@emotion/styled'
 
 
 export const StyledStatusRow = styled.div`
-    height: 200px;
     position: relative;
     .rowName {
       height: 60px;
       background-color: ${props => props.rowColor};
       color: white;
-      padding-left: 10px;
       border-radius: 5px;
       position: absolute;
       z-index: 1;
       top: 0;
       width: 100%;
+      margin-top: 0;
+      span {
+        padding-left: 10px;
+      }
     }
     .ticketList {
-      position: absolute;
-      left: 100px;
-      top: 35px;
+      padding-top: 35px;
+      padding-left: 0;
+      margin: 0 0 0 6%;
+      padding-bottom: 10px;
       z-index: 1;
       display: flex;
+      width: 94%;
+      overflow-x: scroll;
     }
 
   .deleteButton {
     position: absolute;
-    top: 50px;
+    top: 30px;
     background-color: transparent;
     border: none;
     z-index: 1;
@@ -38,7 +43,7 @@ export const StyledStatusRow = styled.div`
   }
   .editButton {
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 30px;
     background-color: transparent;
     border: none;

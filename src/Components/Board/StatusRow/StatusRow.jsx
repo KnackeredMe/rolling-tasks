@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 function StatusRow({rowId, rowName, rowColor, tickets, deleteRow}) {
     return (
         <StyledStatusRow rowColor={rowColor}>
-            <h2 className={'rowName'}>{rowName}</h2>
+            <h2 className={'rowName'}><span>{rowName}</span></h2>
             {tickets && (
                 <ul className={'ticketList'}>
                     {tickets.map(ticket =>

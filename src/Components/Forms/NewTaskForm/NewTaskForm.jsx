@@ -101,9 +101,9 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                         onChange={onChangeComplexity}
                         displayEmpty
                     >
-                        <MenuItem className={'select-item'} value={'HARD'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'HARD'}>HARD<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
                         <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'EASY'}>EASY<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
                     </Select>
                 </div>
                 <div className={'task-assignee select'}>

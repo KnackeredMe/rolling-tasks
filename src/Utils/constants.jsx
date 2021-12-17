@@ -58,4 +58,8 @@ export const iconDict = {
         icon: KeyboardDoubleArrowUpIcon,
         color: 'red',
     },
+    EASY: {
+        icon: KeyboardArrowDownIcon,
+        color: 'green',
+    }
 }
