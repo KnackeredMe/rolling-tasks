@@ -33,13 +33,20 @@ export default function RegistrationForm({open, handleClose}){
     const onChangePassword = (event) => {
       setPassword(event.target.value)
     }
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        
+    }
+
     return(
-        <StyledDialog open={open}>
+        <StyledDialog open={open} onSubmit={handleSubmit}>
             <DialogContent className={'content'}>
                 <div className={'registration-form'}>
                     <h1>Registration form</h1>
                     <label className={'first-name'}>First name</label>
-                    <TextField className={'first-name-input'}
+                    <TextField value={firstName}
+                               className={'first-name-input'}
                                autoFocus
                                margin="dense"
                                id="firstName"
@@ -103,7 +110,7 @@ export default function RegistrationForm({open, handleClose}){
                                onChange={onChangePassword}
                                minLength={8}
                     />
-                </div>
+               </div>
             </DialogContent>
             <DialogActions>
                 <Button className={'registrationConfirm'} onClick={() => {}}>Become a roller</Button>

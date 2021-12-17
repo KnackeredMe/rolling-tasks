@@ -5,13 +5,15 @@ import {StyledHeader} from "./Header.styled";
 import Navigation from "./Navigation/Navigation";
 import RegistrationForm from "../Forms/RegistrationForm/RegistrationForm";
 import {Link} from "react-router-dom";
+import RollinForm from "../Forms/RollInForm/RollinForm";
 
 
 export class Header extends Component {
     constructor() {
         super();
         this.state = {
-            isRegistrationFormOpen: false
+            isRegistrationFormOpen: false,
+            isRollinFormOpen: false
         }
     }
     openRegistrationForm = () => {
@@ -20,10 +22,17 @@ export class Header extends Component {
     closeRegistrationForm = () =>{
         this.setState({isRegistrationFormOpen: false})
     }
+    openRollinForm = () => {
+        this.setState({isRollinFormOpen: true})
+    }
+    closeRollinForm = () =>{
+        this.setState({isRollinFormOpen: false})
+    }
 
 
    render() {
         const isRegistrationFormOpen = this.state.isRegistrationFormOpen;
+        const isRollinFormOpen = this.state.isRollinFormOpen;
         return (
             <StyledHeader>
                 <Container>
@@ -33,12 +42,13 @@ export class Header extends Component {
                             <a onClick={this.openRegistrationForm}>Sign Up</a>
                         </div>
                         <div className={'navItem'}>
-                            <a className={'activeLink'} href={''}>Roll In</a>
+                            <a className={'activeLink'} onClick={this.openRollinForm}>Roll In</a>
                         </div>
                     </Navigation>
 
                 </Container>
                 <RegistrationForm open={isRegistrationFormOpen} handleClose={this.closeRegistrationForm}/>
+                <RollinForm open={isRollinFormOpen} handleClose={this.closeRollinForm}/>
             </StyledHeader>
         );
     }

@@ -1,14 +1,13 @@
 import styled from '@emotion/styled'
 import {Dialog} from "@mui/material";
 import registrationForm from '../../../Assets/Images/registrationForm.png'
-import TextField from "@mui/material/TextField";
 import "@fontsource/bubblegum-sans";
 
 
 export const StyledDialog = styled(Dialog)`
  .MuiPaper-root {
    background-image: url(${registrationForm});
-   min-height: ${window.innerHeight - 20}px;
+   min-height: 540px;
    min-width: 900px;
    background-repeat: no-repeat;
    background-size: cover;
@@ -28,14 +27,17 @@ export const StyledDialog = styled(Dialog)`
    position: absolute;
    right: 10px;
    bottom: 10px;
+   background: none;
+   border: none;
    
-   font-family: 'Bubblegum Sans',sans-serif  ;
-   font-size: 36px;
+   font-family: 'Bubblegum Sans',cursive ;
+   font-size: 48px;
    font-style: normal;
    font-weight: 400;
    line-height: 74px;
    letter-spacing: 0;
    text-align: left;
+   text-transform: none;
 
    color: black;
  }
