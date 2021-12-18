@@ -7,20 +7,35 @@ import {StyledDialog} from "./RegistrationForm.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useState} from "react";
 import {registration} from "../../../Store/requests";
+import {validationMessages} from "../../../Utils/constants";
 
 export default function RegistrationForm({open, handleClose}){
     const [firstName, setFirstName] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
     const [lastName, setLastName] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
     const [date, setDate] = useState(null);
     const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('')
 
     const onChangeFirstName= (event) => {
         setFirstName(event.target.value);
+        if (event.target.value === '') {
+            setFirstNameError(validationMessages.required);
+            return
+        }
+        setFirstNameError('');
     }
 
     const onChangeLastName = (event) => {
         setLastName(event.target.value);
+        if (event.target.value === '') {
+            setLastNameError(validationMessages.required);
+            return
+        }
+        setLastNameError('');
     }
 
     const onChangeDate = (event) => {
@@ -29,13 +44,38 @@ export default function RegistrationForm({open, handleClose}){
 
     const onChangeEmail= (event) => {
         setEmail(event.target.value);
+        if (event.target.value === '') {
+            setEmailError(validationMessages.required);
+            return
+        }
+        setEmailError('');
     }
 
     const onChangePassword = (event) => {
-      setPassword(event.target.value)
+        setPassword(event.target.value)
+        if (event.target.value === '') {
+            setPasswordError(validationMessages.required);
+            return
+        }
+        setPasswordError('');
     }
 
     const handleSubmit = (event) =>{
+        if (firstName === '') {
+            setFirstNameError(validationMessages.required)
+        }
+        if (lastName === '') {
+            setLastNameError(validationMessages.required)
+        }
+        if (email === '') {
+            setEmailError(validationMessages.required)
+        }
+        if (password === '') {
+            setPasswordError(validationMessages.required)
+        }
+        if (password === '' || email === '' || firstName === '' || lastName === '' || password.length < 8) {
+            return
+        }
         event.preventDefault();
         const body = {
             firstName: firstName,
@@ -55,7 +95,7 @@ export default function RegistrationForm({open, handleClose}){
         <StyledDialog open={open}>
             <DialogContent className={'content'}>
                 <div className={'registration-form'}>
-                    <h1>Registration form</h1>
+                    <h1>Registration</h1>
                     <label className={'first-name'}>First name</label>
                     <TextField value={firstName}
                                className={'first-name-input'}
@@ -66,6 +106,7 @@ export default function RegistrationForm({open, handleClose}){
                                fullWidth
                                variant="standard"
                                onChange={onChangeFirstName}
+                               helperText={firstNameError}
                     />
                     <label className={'last-name'}>Last name</label>
                     <TextField className={'last-name-input'}
@@ -76,6 +117,7 @@ export default function RegistrationForm({open, handleClose}){
                                fullWidth
                                variant="standard"
                                onChange={onChangeLastName}
+                               helperText={lastNameError}
                     />
                     {/*<label className={'date'}>Date of birth</label>*/}
                     {/*<TextField*/}
@@ -99,6 +141,7 @@ export default function RegistrationForm({open, handleClose}){
                             fullWidth
                             variant="standard"
                             onChange={onChangeEmail}
+                           helperText={emailError}
                     />
                     <label className={'password'}>Password</label>
                     <TextField className={'password-input'}
@@ -110,6 +153,7 @@ export default function RegistrationForm({open, handleClose}){
                                variant="standard"
                                onChange={onChangePassword}
                                minLength={8}
+                               helperText={passwordError}
                     />
                     {/*<label className={'retype-password'}>Retype password</label>*/}
                     {/*<TextField className={'retype-password-input'}*/}

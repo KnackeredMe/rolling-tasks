@@ -39,7 +39,7 @@ export default function NewRowForm({open, handleClose, createRow}) {
         if (rowColor === '') {
             setRowColorError('Required');
         }
-        if ((rowName || rowColor) === '') {
+        if (rowName === '' || rowColor === '') {
             return
         }
         createRow(rowName, rowColor);
