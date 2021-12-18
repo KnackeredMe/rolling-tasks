@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {API_URL, TEMP_JWT_TOKEN} from "../Utils/constants";
+import {API_URL} from "../Utils/constants";
 
 export const getBoard = async (boardId) => {
     const response = await axios.get(`${API_URL}/boards/${boardId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
     }});
     console.log(response);
     return response;
@@ -17,7 +17,7 @@ export const getRows = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -28,7 +28,7 @@ export const getTickets = async () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -38,7 +38,7 @@ export const postRow = async (body) => {
     const response = await axios.post(`${API_URL}/rows`, body, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -50,7 +50,7 @@ export const getTicket = async (ticketId) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -60,7 +60,7 @@ export const postTickets = async (body) => {
     const response = await axios.post(`${API_URL}/tickets`, body, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -70,7 +70,7 @@ export const putTicket = async (body, ticketId) => {
     const response = await axios.put(`${API_URL}/tickets/${ticketId}`, body, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -81,7 +81,7 @@ export const deleteTicket = async (ticketId) => {
     const response = await axios.delete(`${API_URL}/tickets/${ticketId}`, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
@@ -90,7 +90,7 @@ export const deleteTicket = async (ticketId) => {
 export const deleteRow = async (rowId) => {
     const response = await axios.delete(`${API_URL}/rows/${rowId}`, {
         headers: {
-            'Authorization' : TEMP_JWT_TOKEN,
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;
