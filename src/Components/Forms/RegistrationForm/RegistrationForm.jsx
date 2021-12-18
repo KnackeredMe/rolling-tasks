@@ -119,19 +119,19 @@ export default function RegistrationForm({open, handleClose}){
                                onChange={onChangeLastName}
                                helperText={lastNameError}
                     />
-                    {/*<label className={'date'}>Date of birth</label>*/}
-                    {/*<TextField*/}
-                    {/*    autoFocus*/}
-                    {/*    margin="dense"*/}
-                    {/*    className={'date-input'}*/}
-                    {/*    type="date"*/}
-                    {/*    fullWidth*/}
-                    {/*    variant="standard"*/}
-                    {/*    onChange={onChangeDate}*/}
-                    {/*    InputLabelProps={{*/}
-                    {/*        shrink: true,*/}
-                    {/*    }}*/}
-                    {/*/>*/}
+                    <label className={'date'}>Date of birth</label>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        className={'date-input'}
+                        type="date"
+                        fullWidth
+                        variant="standard"
+                        onChange={onChangeDate}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                     <label className={'email'}>Email</label>
                     <TextField className={'email-input'}
                             autoFocus
@@ -155,17 +155,17 @@ export default function RegistrationForm({open, handleClose}){
                                minLength={8}
                                helperText={passwordError}
                     />
-                    {/*<label className={'retype-password'}>Retype password</label>*/}
-                    {/*<TextField className={'retype-password-input'}*/}
-                    {/*           autoFocus*/}
-                    {/*           margin="dense"*/}
-                    {/*           id="retype-password"*/}
-                    {/*           type="password"*/}
-                    {/*           fullWidth*/}
-                    {/*           variant="standard"*/}
-                    {/*           onChange={onChangePassword}*/}
-                    {/*           minLength={8}*/}
-                    {/*/>*/}
+                    <label className={'retype-password'}>Retype password</label>
+                    <TextField className={'retype-password-input'}
+                               autoFocus
+                               margin="dense"
+                               id="retype-password"
+                               type="password"
+                               fullWidth
+                               variant="standard"
+                               onChange={onChangePassword}
+                               minLength={8}
+                    />
                </div>
             </DialogContent>
             <DialogActions>

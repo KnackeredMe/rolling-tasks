@@ -43,7 +43,10 @@ export const StyledDialog = styled(Dialog)`
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
   }
-
+  .MuiInput-root:after{
+    border-bottom-color: black;
+  }
+  
   label{
     width: 242px;
     font-family: 'Roboto Slab', serif;

@@ -10,7 +10,7 @@ export const StyledLanding = styled.div`
     position: relative;
 
     .landingText {
-      font-size: 20px;
+      font-size: 18px;
       color: rgba(0, 0, 0, 0.5);
       text-indent: 40px;
     }
@@ -18,12 +18,12 @@ export const StyledLanding = styled.div`
     .landingHeading {
       margin: 0;
       font-size: 36px;
+      text-indent: 40px;
     }
   
     .landingArticle {
       padding-top: 40px;
-      width: 500px;
+      width: 600px;
       max-height: 300px;
-      margin-left: 100px;
     }
 `
