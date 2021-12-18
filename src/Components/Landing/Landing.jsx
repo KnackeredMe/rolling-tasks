@@ -14,7 +14,12 @@ export class Landing extends Component {
                 <Container>
                     <article className={'landingArticle'}>
                         <h1 className={'landingHeading'}>What is RollingTasks?</h1>
-                        <p className={'landingText'}>Rolling Tasks was developed for comfortable, logical and customizable proccess of working both in team, and for personal aims. You can use it for self time-management, planning your tasks for future, that may come in handy in studying. Also, it is useful for cooperation with teammates, so you can see the global picture of current work, track progress of solving issues, defign and assign teammates, that would be responsible for it and designate the proirities. Finnaly, you can discuss necessary topics with your teammates “in place” using embedded chat, so you can roll under your own workflow.Still do not use application?
+                        <p className={'landingText'}>Rolling Tasks was developed for comfortable, logical and customizable process of working both in team, and for personal aims.
+                            You can use it for self time-management, planning your tasks for future, that may come in handy in studying.
+                            Also, it is useful for cooperation with teammates, so you can see the global picture of current work, track progress of solving issues,
+                            define and assign teammates, that would be responsible for it and designate the priorities.
+                            Finally, you can discuss necessary topics with your teammates “in place” using embedded chat,
+                            so you can roll under your own workflow.Still do not use application?
                         </p>
                         <p className={'landingText'}>
                             Type Sign up and become a Roller!
