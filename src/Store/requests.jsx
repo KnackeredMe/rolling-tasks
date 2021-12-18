@@ -96,3 +96,19 @@ export const deleteRow = async (rowId) => {
     return response;
 }
 
+export const registration = async (body) => {
+    const response = await axios.post(`${API_URL}/auth/registration`, body, {
+        headers: {
+        }});
+    console.log(response);
+    return response;
+}
+
+export const authorization = async (body) => {
+    const response = await axios.post(`${API_URL}/auth`, body, {
+        headers: {
+        }});
+    console.log(response);
+    return response;
+}
+

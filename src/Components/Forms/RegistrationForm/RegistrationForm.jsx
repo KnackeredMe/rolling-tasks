@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import {StyledDialog} from "./RegistrationForm.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useState} from "react";
+import {registration} from "../../../Store/requests";
 
 export default function RegistrationForm({open, handleClose}){
     const [firstName, setFirstName] = useState('');
@@ -36,11 +37,22 @@ export default function RegistrationForm({open, handleClose}){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
+        const body = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            username: '',
+            password: password,
+        }
+        registration(body).then(() => {
+            console.log('Registration')
+            handleClose();
+        })
         
     }
 
     return(
-        <StyledDialog open={open} onSubmit={handleSubmit}>
+        <StyledDialog open={open}>
             <DialogContent className={'content'}>
                 <div className={'registration-form'}>
                     <h1>Registration form</h1>
@@ -65,19 +77,19 @@ export default function RegistrationForm({open, handleClose}){
                                variant="standard"
                                onChange={onChangeLastName}
                     />
-                    <label className={'date'}>Date of birth</label>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        className={'date-input'}
-                        type="date"
-                        fullWidth
-                        variant="standard"
-                        onChange={onChangeDate}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                    {/*<label className={'date'}>Date of birth</label>*/}
+                    {/*<TextField*/}
+                    {/*    autoFocus*/}
+                    {/*    margin="dense"*/}
+                    {/*    className={'date-input'}*/}
+                    {/*    type="date"*/}
+                    {/*    fullWidth*/}
+                    {/*    variant="standard"*/}
+                    {/*    onChange={onChangeDate}*/}
+                    {/*    InputLabelProps={{*/}
+                    {/*        shrink: true,*/}
+                    {/*    }}*/}
+                    {/*/>*/}
                     <label className={'email'}>Email</label>
                     <TextField className={'email-input'}
                             autoFocus
@@ -99,21 +111,21 @@ export default function RegistrationForm({open, handleClose}){
                                onChange={onChangePassword}
                                minLength={8}
                     />
-                    <label className={'retype-password'}>Retype password</label>
-                    <TextField className={'retype-password-input'}
-                               autoFocus
-                               margin="dense"
-                               id="retype-password"
-                               type="password"
-                               fullWidth
-                               variant="standard"
-                               onChange={onChangePassword}
-                               minLength={8}
-                    />
+                    {/*<label className={'retype-password'}>Retype password</label>*/}
+                    {/*<TextField className={'retype-password-input'}*/}
+                    {/*           autoFocus*/}
+                    {/*           margin="dense"*/}
+                    {/*           id="retype-password"*/}
+                    {/*           type="password"*/}
+                    {/*           fullWidth*/}
+                    {/*           variant="standard"*/}
+                    {/*           onChange={onChangePassword}*/}
+                    {/*           minLength={8}*/}
+                    {/*/>*/}
                </div>
             </DialogContent>
             <DialogActions>
-                <Button className={'registrationConfirm'} onClick={() => {}}>Become a roller</Button>
+                <Button className={'registrationConfirm'} onClick={handleSubmit}>Become a roller</Button>
                 <Button className={'close'} onClick={() => handleClose()}>
                     <img src={closeIcon} alt={'close icon'}/>
                 </Button>

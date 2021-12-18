@@ -4,6 +4,7 @@ import StatusRow from "./StatusRow/StatusRow";
 import {deleteRow, getBoard, postRow, postTickets} from "../../Store/requests";
 import NewRowForm from "../Forms/NewRowForm/NewRowForm";
 import NewTaskForm from "../Forms/NewTaskForm/NewTaskForm";
+import AddIcon from '@mui/icons-material/Add';
 
 export const RowsContext = createContext({});
 
@@ -63,14 +64,12 @@ function Board() {
         }
         postTickets(body).then(result => {
             setRows(prevState => {
-                const newRows = [];
-                prevState.forEach((row, index) => {
+                return prevState.map((row, index) => {
                     if (row.id === taskRow) {
                         row.tickets.push(result.data);
                     }
-                    newRows.push(row);
+                    return row;
                 })
-                return newRows;
             })
         })
     }
@@ -86,8 +85,8 @@ function Board() {
                                 <button className={'chatButton'} type={"button"}/>
                             </div>
                             <div className={'boardHeaderActions'}>
-                                <button className={`createTaskButton`} onClick={onTaskFormOpen} type={"button"}>Create Task</button>
-                                <button className={'addListButton'} onClick={onRowFormOpen} type={"button"}>Add Row</button>
+                                <button className={`createTaskButton`} onClick={onTaskFormOpen} type={"button"}>Create Task <AddIcon/></button>
+                                <button className={'addListButton'} onClick={onRowFormOpen} type={"button"}>Add Row <AddIcon/></button>
                             </div>
                         </div>
                         {rows && rows.map(row =>

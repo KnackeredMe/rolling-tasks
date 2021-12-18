@@ -105,17 +105,15 @@ export default function TicketDetails({open, ticket}) {
         }
         putTicket(body, ticket.id).then((response) => {
             setRows(prevState => {
-                let newRows = [];
-                prevState.forEach(item => {
+                return prevState.map(item => {
                     if (item.id === initialRow) {
                         item.tickets = item.tickets.filter(task => task.id !== ticket.id);
                     }
                     if (item.id === row) {
                         item.tickets.push(response.data);
                     }
-                    newRows.push(item);
+                    return item;
                 })
-                return newRows;
             })
             history.push('/board');
         });
@@ -124,14 +122,12 @@ export default function TicketDetails({open, ticket}) {
     const removeTicket = () => {
         deleteTicket(ticket.id).then(() => {
             setRows(prevState => {
-                let newRows = [];
-                prevState.forEach(item => {
+                return prevState.map(item => {
                     if (item.id === initialRow) {
                         item.tickets = item.tickets.filter(task => task.id !== ticket.id);
                     }
-                    newRows.push(item);
+                    return item;
                 })
-                return newRows;
             })
             history.push('/board')
         })

@@ -31,13 +31,17 @@ export const StyledBoard = styled.div`
       margin-left: 20px;
     }
     .createTaskButton {
-      width: 100px;
+      width: 110px;
       height: 25px;
       color: white;
       border: none;
       background-color: ${defaultColors.orange};
       border-radius: 4px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      justify-content: space-between;
     }
     .addListButton {
       width: 100px;
@@ -48,5 +52,9 @@ export const StyledBoard = styled.div`
       margin-left: 15px;
       border-radius: 4px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      justify-content: space-between;
     }
 `

@@ -6,10 +6,13 @@ import DialogContent from '@mui/material/DialogContent';
 import {StyledDialog} from "./RollinForm.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useState} from "react";
+import {authorization} from "../../../Store/requests";
+import {useHistory} from "react-router-dom";
 
 export default function RollinForm({open, handleClose}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     const onChangeEmail= (event) => {
         setEmail(event.target.value);
@@ -20,10 +23,19 @@ export default function RollinForm({open, handleClose}){
     }
     const handleSubmit = (event) =>{
         event.preventDefault();
-
+        const body = {
+            email: email,
+            password: password,
+        }
+        authorization(body).then(result => {
+            localStorage.setItem('token', result.data.token);
+            localStorage.setItem('isAuthenticated', 'true');
+            handleClose();
+            history.push('/board');
+        })
     }
     return(
-        <StyledDialog open={open} onSubmit={handleSubmit}>
+        <StyledDialog open={open}>
             <DialogContent className={'content'}>
                 <div className={'rollin-form'}>
                     <label className={'email'}>Email</label>
@@ -50,7 +62,7 @@ export default function RollinForm({open, handleClose}){
                 </div>
             </DialogContent>
             <DialogActions>
-                <Button className={'registrationConfirm'} onClick={() => {}}>Roll in</Button>
+                <Button className={'registrationConfirm'} onClick={handleSubmit}>Roll in</Button>
                 <Button className={'close'} onClick={() => handleClose()}>
                     <img src={closeIcon} alt={'close icon'}/>
                 </Button>

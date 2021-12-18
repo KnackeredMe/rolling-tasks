@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 
 export const StyledStatusRow = styled.div`
     position: relative;
+    min-height: 60px;
+    margin-bottom: 10px;
     .rowName {
       height: 60px;
       background-color: ${props => props.rowColor};

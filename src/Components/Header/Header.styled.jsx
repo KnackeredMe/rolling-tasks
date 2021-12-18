@@ -10,4 +10,14 @@ export const StyledHeader = styled.header`
       display: flex;
       align-items: center;
     }
+    .rollOutIcon {
+      width: 20px;
+      margin-left: 10px;
+    }
+    .navItem {
+      a {
+        display: flex;
+        align-items: center;
+      }
+    }
 `
