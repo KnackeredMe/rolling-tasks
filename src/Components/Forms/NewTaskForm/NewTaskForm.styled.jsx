@@ -63,6 +63,12 @@ export const StyledNewTaskForm = styled(Dialog)`
       justify-content: space-between;
       height: 40px;
       margin-top: 10px;
+      position: relative;
+      &-message {
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+      }
     }
   
     .row-name {

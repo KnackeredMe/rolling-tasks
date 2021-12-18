@@ -6,17 +6,44 @@ import DialogContent from '@mui/material/DialogContent';
 import {StyledNewRowForm} from "./NewRowForm.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
 import {useState} from "react";
+import {validationMessages} from "../../../Utils/constants";
 
 export default function NewRowForm({open, handleClose, createRow}) {
     const [rowName, setRowName] = useState('');
+    const [rowNameError, setRowNameError] = useState('');
     const [rowColor, setRowColor] = useState('');
+    const [rowColorError, setRowColorError] = useState('');
 
     const onChangeName = (event) => {
         setRowName(event.target.value);
+        if (event.target.value === '') {
+            setRowNameError(validationMessages.required);
+            return;
+        }
+        setRowNameError('');
     }
 
     const onChangeColor = (event) => {
         setRowColor(event.target.value)
+        if (event.target.value === '') {
+            setRowColorError('Required');
+            return;
+        }
+        setRowColorError('');
+    }
+
+    const handleSubmit = () => {
+        if (rowName === '') {
+            setRowNameError(validationMessages.required);
+        }
+        if (rowColor === '') {
+            setRowColorError('Required');
+        }
+        if ((rowName || rowColor) === '') {
+            return
+        }
+        createRow(rowName, rowColor);
+        handleClose();
     }
 
     return (
@@ -32,6 +59,7 @@ export default function NewRowForm({open, handleClose, createRow}) {
                                fullWidth
                                variant="standard"
                                onChange={onChangeName}
+                               helperText={rowNameError}
                     />
                 </div>
                 <div className={'row-color'}>
@@ -44,11 +72,12 @@ export default function NewRowForm({open, handleClose, createRow}) {
                                variant="standard"
                                defaultValue="#000000"
                                onChange={onChangeColor}
+                               helperText={rowColorError}
                     />
                 </div>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => {createRow(rowName, rowColor); handleClose()}}>Create</Button>
+                <Button onClick={handleSubmit}>Create</Button>
                 <Button className={'close'} onClick={() => handleClose()}>
                     <img src={closeIcon} alt={'close icon'}/>
                 </Button>

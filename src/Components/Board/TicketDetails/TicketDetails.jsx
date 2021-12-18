@@ -22,10 +22,12 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import EditIcon from '@mui/icons-material/Edit';
 import {RowsContext} from "../Board";
 import {deleteTicket, getTickets, putTicket} from "../../../Store/requests";
+import {validationMessages} from "../../../Utils/constants";
 
 export default function TicketDetails({open, ticket}) {
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
+    const [titleError, setTitleError] = useState('');
     const [priority, setPriority] = useState('');
     const [row, setRow] = useState([]);
     const [complexity, setComplexity] = useState('');
@@ -60,6 +62,11 @@ export default function TicketDetails({open, ticket}) {
 
     const onChangeName = (event) => {
         setTitle(event.target.value);
+        if (event.target.value === '') {
+            setTitleError(validationMessages.required);
+            return
+        }
+        setTitleError('');
     }
 
     const onChangeType = (event) => {
@@ -130,6 +137,14 @@ export default function TicketDetails({open, ticket}) {
         })
     }
 
+    const handleSubmit = () => {
+        if (title === '') {
+            setTitleError(validationMessages.required);
+            return
+        }
+        updateTicket()
+    }
+
     return (
         <StyledTicketDetails open={open}>
             <h1>
@@ -142,6 +157,7 @@ export default function TicketDetails({open, ticket}) {
                            placeholder={'Type here...'}
                            variant="standard"
                            value={title}
+                           helperText={titleError}
                            onChange={onChangeName}/>
             </h1>
             <DialogContent className={'content'}>
@@ -166,12 +182,12 @@ export default function TicketDetails({open, ticket}) {
                                 onChange={onChangeType}
                                 displayEmpty
                             >
-                                <MenuItem className={'select-item'} value={'BUG'}>Bug<BugReportIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'TASK'}>Task<AddTaskIcon style={{fill: "blue", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'SUBTASK'}>Subtask<CheckIcon style={{fill: "blue", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'SPIKE'}>Spike<ArrowUpwardIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'EPIC'}>Epic<BoltIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'STORY'}>Story<LightbulbIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'BUG'}>Bug<BugReportIcon className={'select-item-icon'}  style={{fill: "red"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'TASK'}>Task<AddTaskIcon className={'select-item-icon'}  style={{fill: "blue"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'SUBTASK'}>Subtask<CheckIcon className={'select-item-icon'}  style={{fill: "blue"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'SPIKE'}>Spike<ArrowUpwardIcon className={'select-item-icon'}  style={{fill: "green"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'EPIC'}>Epic<BoltIcon className={'select-item-icon'}  style={{fill: "orange"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'STORY'}>Story<LightbulbIcon className={'select-item-icon'}  style={{fill: "orange"}}/></MenuItem>
                             </Select>
                             <label className={'task-type-label'}>Type</label>
                         </div>
@@ -181,10 +197,10 @@ export default function TicketDetails({open, ticket}) {
                                 onChange={onChangePriority}
                                 displayEmpty
                             >
-                                <MenuItem className={'select-item'} value={'BLOCKER'}>Blocker<BlockIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'HIGH'}>High<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'BLOCKER'}>Blocker<BlockIcon className={'select-item-icon'}  style={{fill: "red"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'HIGH'}>High<KeyboardDoubleArrowUpIcon className={'select-item-icon'}  style={{fill: "red"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon className={'select-item-icon'}  style={{fill: "orange"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'LOW'}>Low<KeyboardArrowDownIcon className={'select-item-icon'}  style={{fill: "green"}}/></MenuItem>
                             </Select>
                             <label className={'task-priority-label'}>Priority</label>
                         </div>
@@ -194,9 +210,9 @@ export default function TicketDetails({open, ticket}) {
                                 onChange={onChangeComplexity}
                                 displayEmpty
                             >
-                                <MenuItem className={'select-item'} value={'HARD'}>Hard<KeyboardDoubleArrowUpIcon style={{fill: "red", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon style={{fill: "orange", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem className={'select-item'} value={'EASY'}>Easy<KeyboardArrowDownIcon style={{fill: "green", marginLeft: "auto"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'HARD'}>Hard<KeyboardDoubleArrowUpIcon className={'select-item-icon'}  style={{fill: "red"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon className={'select-item-icon'}  style={{fill: "orange"}}/></MenuItem>
+                                <MenuItem className={'select-item'} value={'EASY'}>Easy<KeyboardArrowDownIcon className={'select-item-icon'}  style={{fill: "green"}}/></MenuItem>
                             </Select>
                             <label className={'task-complexity-label'}>Complexity</label>
                         </div>
@@ -206,11 +222,11 @@ export default function TicketDetails({open, ticket}) {
                                 onChange={onChangeAssignee}
                                 displayEmpty
                             >
-                                <MenuItem value={'User 1'}>User 1<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem value={'User 2'}>User 2<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem value={'User 3'}>User 3<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem value={'User 4'}>User 4<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
-                                <MenuItem value={'User 5'}>User 5<img src={userIcon} alt='user' style={{width: "30px", marginLeft: "auto"}}/></MenuItem>
+                                <MenuItem value={'User 1'}>User 1<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
+                                <MenuItem value={'User 2'}>User 2<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
+                                <MenuItem value={'User 3'}>User 3<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
+                                <MenuItem value={'User 4'}>User 4<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
+                                <MenuItem value={'User 5'}>User 5<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
                             </Select>
                             <label className={'task-assignee-label'}>Assignee</label>
                         </div>
@@ -222,7 +238,7 @@ export default function TicketDetails({open, ticket}) {
                                 {
                                     rows && rows.map(row =>
                                         <MenuItem key={row.id} value={row.id}>{row.title}
-                                            <span className={'select-item-color'} style={{backgroundColor: row.color, width: '15px', height: '15px', borderRadius: '3px', marginLeft: '5px'}}> </span>
+                                            <div className={'select-item-color-container'}><div className={'select-item-color'} style={{backgroundColor: row.color}}> </div></div>
                                         </MenuItem>
                                     )
                                 }
@@ -234,7 +250,7 @@ export default function TicketDetails({open, ticket}) {
             </DialogContent>
             <DialogActions>
                 <Button onClick={removeTicket}>Delete</Button>
-                <Button onClick={updateTicket}>Save</Button>
+                <Button onClick={handleSubmit}>Save</Button>
                 <Link to={'/board'} className={'close'}>
                     <img src={closeIcon} alt={'close icon'}/>
                 </Link>

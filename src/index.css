@@ -17,3 +17,19 @@ code {
   display: flex;
   flex-direction: column;
 }
+
+.select-item-color {
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+}
+
+.select-item-color-container {
+  margin-left: auto;
+  padding-left: 5px;
+}
+
+.select-item-icon {
+  margin-left: auto;
+  padding-left: 5px;
+}

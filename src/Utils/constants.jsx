@@ -63,3 +63,7 @@ export const iconDict = {
         color: 'green',
     }
 }
+
+export const validationMessages = {
+    required: 'This field is required',
+}
