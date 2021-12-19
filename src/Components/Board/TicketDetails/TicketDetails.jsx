@@ -32,6 +32,7 @@ export default function TicketDetails({open, ticket}) {
     const [row, setRow] = useState([]);
     const [complexity, setComplexity] = useState('');
     const [assignee, setAssignee] = useState('');
+    const [description, setDescription] = useState('');
     const {rows, setRows} = useContext(RowsContext);
     const [initialRow, setInitialRow] = useState('')
     const history = useHistory()
@@ -48,6 +49,7 @@ export default function TicketDetails({open, ticket}) {
         setPriority(ticket.priority);
         setTitle(ticket.title);
         setComplexity(ticket.complexity);
+        setDescription(ticket.description);
         for (const row of rows) {
             if (row.tickets) {
                 for (const item of row.tickets) {
@@ -67,6 +69,10 @@ export default function TicketDetails({open, ticket}) {
             return
         }
         setTitleError('');
+    }
+
+    const onChangeDescription = (event) => {
+        setDescription(event.target.value);
     }
 
     const onChangeType = (event) => {
@@ -95,6 +101,7 @@ export default function TicketDetails({open, ticket}) {
             "position": ticket.position,
             "priority": priority,
             "rowId": row,
+            "description": description,
             "tags": [
                 {
                     "name": "string"
@@ -165,8 +172,11 @@ export default function TicketDetails({open, ticket}) {
                                id="name"
                                type="text"
                                fullWidth
+                               value={description}
                                placeholder={'Type here...'}
                                variant="standard"
+                               onChange={onChangeDescription}
+                               multiline={true}
                     />
                 </div>
                 <div className={'edit'}>
