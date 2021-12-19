@@ -11,6 +11,7 @@ export const StyledTicketItem = styled.li`
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 10px;
     margin-right: 20px;
+    margin-left: 5px;
     .ticket {
       &__name {
         font-size: 14px;

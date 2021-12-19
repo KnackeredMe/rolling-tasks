@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from "../Utils/constants";
+import {API_URL, WS_API_URL, ALL_MESSAGES_HTTP_ENDPOINT} from "../Utils/constants";
 
 export const getBoard = async (boardId) => {
     const response = await axios.get(`${API_URL}/boards/${boardId}`, {
@@ -107,6 +107,15 @@ export const registration = async (body) => {
 export const authorization = async (body) => {
     const response = await axios.post(`${API_URL}/auth`, body, {
         headers: {
+        }});
+    console.log(response);
+    return response;
+}
+
+export const getAllMessages = async () => {
+    const response = await axios.get(API_URL + ALL_MESSAGES_HTTP_ENDPOINT, {
+        headers: {
+            'Authorization' : localStorage.getItem('token'),
         }});
     console.log(response);
     return response;

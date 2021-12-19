@@ -57,4 +57,15 @@ export const StyledBoard = styled.div`
       white-space: nowrap;
       justify-content: space-between;
     }
+  
+    .closed {
+      transition: 500ms ease-in;
+      transform: translate(100%, 0);
+    }
+  
+    .opened {
+      transform: translate(0, 0);
+      transition: 500ms ease-in;
+    }
+  }
 `

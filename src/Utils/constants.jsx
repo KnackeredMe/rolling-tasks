@@ -10,7 +10,12 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const API_URL = 'http://185.199.99.158:8765';
-
+export const WS_API_URL = `http://185.199.99.158:8087`;
+export const MESSENGER_ENDPOINT = '/chat-service';
+export const STOMP_HTTP_ENDPOINT = MESSENGER_ENDPOINT + '/stomp-endpoint?access_token=' + localStorage.getItem('token');
+export const ALL_MESSAGES_HTTP_ENDPOINT = MESSENGER_ENDPOINT + "/messages";
+export const CREATE_MESSAGE_SOCKET_ENDPOINT ='/app/message';
+export const MESSAGES_TOPIC = '/topic/messages';
 export const TEMP_JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGVtYWlsLmNvbSIsInJvbGUiOiJNYW5hZ2VyIiwiZXhwIjoxNjY5MjU3OTIyMDY3fQ.jwfSYaCG69_fEn2YjyXzh_ACgXG66PFWvOddEpb9Bv0';
 
 export const iconDict = {

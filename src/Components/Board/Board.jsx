@@ -5,6 +5,8 @@ import {deleteRow, getBoard, postRow, postTickets} from "../../Store/requests";
 import NewRowForm from "../Forms/NewRowForm/NewRowForm";
 import NewTaskForm from "../Forms/NewTaskForm/NewTaskForm";
 import AddIcon from '@mui/icons-material/Add';
+import Messenger from "./Sidebar/Messenger/Messenger";
+import Sidebar from "./Sidebar/Sidebar";
 
 export const RowsContext = createContext({});
 
@@ -14,6 +16,7 @@ function Board() {
     const [rows, setRows] = useState([]);
     const [newRowFormActive, setNewRowFormActive] = useState(false);
     const [newTaskFormActive, setNewTaskFormActive] = useState(false);
+    const [messengerActive, setMessengerActive] = useState(false);
     useEffect(() => {
         getBoard('3fe23621-4982-4143-a01e-aa47d6532b75').then(result => {
             setBoardId(result.data.id);
@@ -52,6 +55,10 @@ function Board() {
         setNewTaskFormActive(false)
     };
 
+    const openChat = () => {
+        setMessengerActive(prevState => !prevState);
+    }
+
     const createTicket = (taskName, taskType, taskPriority, taskComplexity, taskAssignee, taskRow, taskPosition) => {
         const body = {
             'complexity': taskComplexity,
@@ -82,7 +89,7 @@ function Board() {
                         <div className={'boardHeader'}>
                             <div className={'boardHeaderActions'}>
                                 <h1 className={'boardName'}>{boardName}</h1>
-                                <button className={'chatButton'} type={"button"}/>
+                                <button className={'chatButton'} type={"button"} onClick={openChat}/>
                             </div>
                             <div className={'boardHeaderActions'}>
                                 <button className={`createTaskButton`} onClick={onTaskFormOpen} type={"button"}>Create Task <AddIcon/></button>
@@ -99,6 +106,7 @@ function Board() {
                         )}
                         <NewRowForm open={newRowFormActive} handleClose={onRowFormClose} createRow={createRow}/>
                         <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows}/>
+                        <Sidebar boardName={boardName} messengerActive={messengerActive}/>
                     </div>
                 )}
             </StyledBoard>
