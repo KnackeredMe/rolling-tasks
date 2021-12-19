@@ -121,3 +121,12 @@ export const getAllMessages = async () => {
     return response;
 }
 
+export const getAllUsers = async () => {
+    const response = await axios.get(`${API_URL}/users` , {
+        headers: {
+            'Authorization' : localStorage.getItem('token'),
+        }});
+    console.log(response);
+    return response;
+}
+

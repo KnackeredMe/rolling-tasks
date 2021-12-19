@@ -20,11 +20,11 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import EditIcon from '@mui/icons-material/Edit';
-import {RowsContext} from "../Board";
+import {RowsContext, UsersContext} from "../Board";
 import {deleteTicket, getTickets, putTicket} from "../../../Store/requests";
 import {validationMessages} from "../../../Utils/constants";
 
-export default function TicketDetails({open, ticket}) {
+export default function TicketDetails({open, ticket, setCurrentUserName, setCurrentUserSurname}) {
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
     const [titleError, setTitleError] = useState('');
@@ -34,6 +34,7 @@ export default function TicketDetails({open, ticket}) {
     const [assignee, setAssignee] = useState('');
     const [description, setDescription] = useState('');
     const {rows, setRows} = useContext(RowsContext);
+    const {users, setUsers} = useContext(UsersContext);
     const [initialRow, setInitialRow] = useState('')
     const history = useHistory()
 
@@ -50,6 +51,7 @@ export default function TicketDetails({open, ticket}) {
         setTitle(ticket.title);
         setComplexity(ticket.complexity);
         setDescription(ticket.description);
+        setAssignee(ticket.assigneeId);
         for (const row of rows) {
             if (row.tickets) {
                 for (const item of row.tickets) {
@@ -61,6 +63,8 @@ export default function TicketDetails({open, ticket}) {
             }
         }
     }, [])
+
+
 
     const onChangeName = (event) => {
         setTitle(event.target.value);
@@ -104,12 +108,18 @@ export default function TicketDetails({open, ticket}) {
             "description": description,
             "tags": [
                 {
-                    "name": "string"
                 }
             ],
             "title": title,
-            "type": type
+            "type": type,
+            "assignee": assignee
         }
+        setCurrentUserName(users.filter((user) => {
+            return assignee === user.id;
+        })[0]?.firstName);
+        setCurrentUserSurname(users.filter((user) => {
+            return assignee === user.id;
+        })[0]?.lastName);
         putTicket(body, ticket.id).then((response) => {
             setRows(prevState => {
                 return prevState.map(item => {
@@ -226,13 +236,12 @@ export default function TicketDetails({open, ticket}) {
                             <Select
                                 value={assignee}
                                 onChange={onChangeAssignee}
-                                displayEmpty
-                            >
-                                <MenuItem value={'User 1'}>User 1<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                                <MenuItem value={'User 2'}>User 2<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                                <MenuItem value={'User 3'}>User 3<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                                <MenuItem value={'User 4'}>User 4<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                                <MenuItem value={'User 5'}>User 5<img className={'select-item-icon'}  src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
+                                displayEmpty>
+                                {
+                                    users && users.map(assignee =>
+                                        <MenuItem value={assignee.id}>{`${assignee.firstName} ${assignee.lastName}`}</MenuItem>
+                                    )
+                                }
                             </Select>
                             <label className={'task-assignee-label'}>Assignee</label>
                         </div>

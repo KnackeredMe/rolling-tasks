@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 export const StyledTicketItem = styled.li`
-    min-width: 200px;
-    max-width: 220px;
+    min-width: 220px;
+    max-width: 230px;
     background-color: white;
     list-style: none;
     z-index: 2;
@@ -51,4 +51,7 @@ export const StyledTicketItem = styled.li`
       text-decoration: none;
       color: inherit;
     }
+  .userName{
+    padding-left: 5px;
+  }
 `

@@ -19,8 +19,9 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CheckIcon from '@mui/icons-material/Check';
 import userIcon from '../../../Assets/Images/userIcon.png'
 import {validationMessages} from "../../../Utils/constants";
+import {getAllUsers} from "../../../Store/requests";
 
-export default function NewTaskForm({open, handleClose, createTask, rows}) {
+export default function NewTaskForm({open, handleClose, createTask, rows, users}) {
     const [name, setName] = useState('');
     const [nameError, setNameError] = useState('')
     const [type, setType] = useState('');
@@ -31,7 +32,7 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
     const [complexityError, setComplexityError] = useState('');
     const [assignee, setAssignee] = useState('');
     const [row, setRow] = useState('');
-    const [rowError, setRowError] = useState('')
+    const [rowError, setRowError] = useState('');
 
     const onChangeName = (event) => {
         setName(event.target.value);
@@ -171,15 +172,14 @@ export default function NewTaskForm({open, handleClose, createTask, rows}) {
                     <Select
                         value={assignee}
                         onChange={onChangeAssignee}
-                        displayEmpty
+                        displayEmpty>
+                        {
+                            users && users.map(assignee =>
+                                <MenuItem value={assignee.id}>{`${assignee.firstName} ${assignee.lastName}`}</MenuItem>
+                            )
+                        }
                     >
-                        <MenuItem value={'User 1'}>User 1<img className={'select-item-icon'} src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                        <MenuItem value={'User 2'}>User 2<img className={'select-item-icon'} src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                        <MenuItem value={'User 3'}>User 3<img className={'select-item-icon'} src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                        <MenuItem value={'User 4'}>User 4<img className={'select-item-icon'} src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
-                        <MenuItem value={'User 5'}>User 5<img className={'select-item-icon'} src={userIcon} alt='user' style={{width: "30px"}}/></MenuItem>
                     </Select>
-                    {/*<FormHelperText>With label + helper text</FormHelperText>*/}
                 </div>
                 <div className={'task-row select'}>
                     <label className={'task-row-label'}>Row</label>

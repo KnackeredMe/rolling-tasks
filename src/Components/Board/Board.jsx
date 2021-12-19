@@ -9,11 +9,14 @@ import Messenger from "./Sidebar/Messenger/Messenger";
 import Sidebar from "./Sidebar/Sidebar";
 
 export const RowsContext = createContext({});
+export const UsersContext = createContext({});
+
 
 function Board() {
     const [boardId, setBoardId] = useState('');
     const [boardName, setBoardName] = useState('');
     const [rows, setRows] = useState([]);
+    const [users, setUsers] = useState([]);
     const [newRowFormActive, setNewRowFormActive] = useState(false);
     const [newTaskFormActive, setNewTaskFormActive] = useState(false);
     const [messengerActive, setMessengerActive] = useState(false);
@@ -22,6 +25,7 @@ function Board() {
             setBoardId(result.data.id);
             setBoardName(result.data.name);
             setRows(result.data.rows);
+            setUsers(result.data.allUsers);
         });
     }, [])
 
@@ -68,6 +72,7 @@ function Board() {
             'tags': [],
             'title': taskName,
             'type': taskType,
+            'assignee': taskAssignee
         }
         postTickets(body).then(result => {
             setRows(prevState => {
@@ -83,7 +88,8 @@ function Board() {
 
     return (
         <RowsContext.Provider value={{rows, setRows}}>
-            <StyledBoard>
+            <UsersContext.Provider value={{users, setUsers}}>
+                <StyledBoard>
                 {boardName && (
                     <div>
                         <div className={'boardHeader'}>
@@ -105,11 +111,12 @@ function Board() {
                                        deleteRow={removeRow}/>
                         )}
                         <NewRowForm open={newRowFormActive} handleClose={onRowFormClose} createRow={createRow}/>
-                        <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows}/>
+                        <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows} users={users}/>
                         <Sidebar boardName={boardName} messengerActive={messengerActive}/>
                     </div>
                 )}
             </StyledBoard>
+            </UsersContext.Provider>
         </RowsContext.Provider>
     );
 }

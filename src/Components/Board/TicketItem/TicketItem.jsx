@@ -1,14 +1,31 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {StyledTicketItem} from "./TicketItem.styled";
-import userIcon from "../../../Assets/Images/userIcon.png"
 import TicketDetails from "../TicketDetails/TicketDetails";
 import {Link, Route} from 'react-router-dom';
 import {SvgIcon} from "@mui/material";
 import {iconDict} from "../../../Utils/constants";
+import {UsersContext} from "../Board";
+import userIcon from "../../../Assets/Images/userIcon.png"
 
-function TicketItem(ticket) {
+function TicketItem(ticket, ) {
+    const [currentUserName, setCurrentUserName] = useState('')
+    const [currentUserSurname, setCurrentUserSurname] = useState('')
     useEffect(() => {
     }, [])
+    const {users, setUsers} = useContext(UsersContext);
+
+    useEffect(() => {
+        setCurrentUserName(users.filter((user) => {
+            return ticket.ticket.assigneeId === user.id;
+        })[0]?.firstName);
+        setCurrentUserSurname(users.filter((user) => {
+            return ticket.ticket.assigneeId === user.id;
+        })[0]?.lastName)
+    }, [users])
+
+
+
+
     return (
         <StyledTicketItem shadowColor={iconDict[ticket.ticket.type]?.color}>
             <Link to={`/board/${ticket.ticket.id}`}>
@@ -36,13 +53,17 @@ function TicketItem(ticket) {
                         <p>Complexity</p>
                     </li>
                     <li className={'ticket__info-item'}>
-                        <img className={'userPhoto'} src={userIcon} alt={'user'}/>
+                        <div className={'ticket__info-value'}>
+                            <img className={'userPhoto'} src={userIcon} alt={'user'}/>
+                            <p className={'userName'}>{currentUserName + ' ' + currentUserSurname}</p>
+                        </div>
                         <p>Assignee</p>
+
                     </li>
                 </ul>
             </Link>
             <Route exact path={`/board/${ticket.ticket.id}`}>
-                <TicketDetails open={true} ticket={ticket.ticket}/>
+                <TicketDetails open={true} ticket={ticket.ticket} setCurrentUserName= {setCurrentUserName} setCurrentUserSurname= {setCurrentUserSurname}/>
             </Route>
         </StyledTicketItem>
     );
