@@ -20,7 +20,7 @@ function Messenger({boardName}) {
     const [stompClient, setStompClient] = useState({});
 
     useEffect(() => {
-        connect();
+        setTimeout(() => connect(), 300);
         // return () => disconnect();
     }, [])
 

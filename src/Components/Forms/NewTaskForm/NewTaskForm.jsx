@@ -175,7 +175,7 @@ export default function NewTaskForm({open, handleClose, createTask, rows, users}
                         displayEmpty>
                         {
                             users && users.map(assignee =>
-                                <MenuItem value={assignee.id}>{`${assignee.firstName} ${assignee.lastName}`}</MenuItem>
+                                <MenuItem key={assignee.id} value={assignee.id}>{`${assignee.firstName} ${assignee.lastName}`}</MenuItem>
                             )
                         }
                     >

@@ -1,12 +1,13 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {StyledBoard} from "./Board.styled";
 import StatusRow from "./StatusRow/StatusRow";
-import {deleteRow, getBoard, postRow, postTickets} from "../../Store/requests";
+import {deleteRow, getBoard, postRow, postTickets, putTicket} from "../../Store/requests";
 import NewRowForm from "../Forms/NewRowForm/NewRowForm";
 import NewTaskForm from "../Forms/NewTaskForm/NewTaskForm";
 import AddIcon from '@mui/icons-material/Add';
 import Messenger from "./Sidebar/Messenger/Messenger";
 import Sidebar from "./Sidebar/Sidebar";
+import {DragDropContext} from "react-beautiful-dnd";
 
 export const RowsContext = createContext({});
 export const UsersContext = createContext({});
@@ -86,6 +87,36 @@ function Board() {
         })
     }
 
+    const onDragEnd = (result, rows, setRows) => {
+        if (!result.destination) return;
+        const sourceRow = rows.find(row => row.id === result.source.droppableId);
+        const draggedTicket = sourceRow.tickets.find(ticket => ticket.id === result.draggableId);
+        const body = {
+            assignee: draggedTicket.assigneeId,
+            complexity: draggedTicket.complexity,
+            description: draggedTicket.description,
+            position: draggedTicket.position,
+            priority: draggedTicket.priority,
+            rowId: result.destination.droppableId,
+            tags: draggedTicket.tags,
+            title: draggedTicket.title,
+            type: draggedTicket.type,
+        }
+        putTicket(body, draggedTicket.id).then(response => {
+            setRows(prevState => {
+                return prevState.map(item => {
+                    if (item.id === result.source.droppableId) {
+                        item.tickets = item.tickets.filter(task => task.id !== result.draggableId);
+                    }
+                    if (item.id === result.destination.droppableId) {
+                        item.tickets.push(response.data);
+                    }
+                    return item;
+                })
+            })
+        })
+    }
+
     return (
         <RowsContext.Provider value={{rows, setRows}}>
             <UsersContext.Provider value={{users, setUsers}}>
@@ -102,14 +133,16 @@ function Board() {
                                 <button className={'addListButton'} onClick={onRowFormOpen} type={"button"}>Add Row <AddIcon/></button>
                             </div>
                         </div>
-                        {rows && rows.map(row =>
-                            <StatusRow key={row.id}
-                                       rowId={row.id}
-                                       rowName={row.title}
-                                       rowColor={row.color}
-                                       tickets={row.tickets}
-                                       deleteRow={removeRow}/>
-                        )}
+                        <DragDropContext onDragEnd={(result) => onDragEnd(result, rows, setRows)}>
+                            {rows && rows.map(row =>
+                                <StatusRow key={row.id}
+                                           rowId={row.id}
+                                           rowName={row.title}
+                                           rowColor={row.color}
+                                           tickets={row.tickets}
+                                           deleteRow={removeRow}/>
+                            )}
+                        </DragDropContext>
                         <NewRowForm open={newRowFormActive} handleClose={onRowFormClose} createRow={createRow}/>
                         <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows} users={users}/>
                         <Sidebar boardName={boardName} messengerActive={messengerActive}/>

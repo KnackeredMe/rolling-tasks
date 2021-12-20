@@ -12,6 +12,7 @@ export const StyledTicketItem = styled.li`
     padding: 10px;
     margin-right: 20px;
     margin-left: 5px;
+    user-select: none;
     .ticket {
       &__name {
         font-size: 14px;
