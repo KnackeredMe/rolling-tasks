@@ -130,3 +130,12 @@ export const getAllUsers = async () => {
     return response;
 }
 
+export const getCurrentUser = async () => {
+    const response = await axios.get(`${API_URL}/users/current` , {
+        headers: {
+            'Authorization' : localStorage.getItem('token'),
+        }});
+    console.log(response);
+    return response;
+}
+

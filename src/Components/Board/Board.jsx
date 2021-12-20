@@ -1,13 +1,14 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
 import {StyledBoard} from "./Board.styled";
 import StatusRow from "./StatusRow/StatusRow";
-import {deleteRow, getBoard, postRow, postTickets, putTicket} from "../../Store/requests";
+import {deleteRow, getBoard, getCurrentUser, postRow, postTickets, putTicket} from "../../Store/requests";
 import NewRowForm from "../Forms/NewRowForm/NewRowForm";
 import NewTaskForm from "../Forms/NewTaskForm/NewTaskForm";
 import AddIcon from '@mui/icons-material/Add';
 import Messenger from "./Sidebar/Messenger/Messenger";
 import Sidebar from "./Sidebar/Sidebar";
 import {DragDropContext} from "react-beautiful-dnd";
+import {CurrentUserContext} from "../../App";
 
 export const RowsContext = createContext({});
 export const UsersContext = createContext({});
@@ -21,6 +22,8 @@ function Board() {
     const [newRowFormActive, setNewRowFormActive] = useState(false);
     const [newTaskFormActive, setNewTaskFormActive] = useState(false);
     const [messengerActive, setMessengerActive] = useState(false);
+    const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
+
     useEffect(() => {
         getBoard('3fe23621-4982-4143-a01e-aa47d6532b75').then(result => {
             setBoardId(result.data.id);
@@ -28,7 +31,13 @@ function Board() {
             setRows(result.data.rows);
             setUsers(result.data.allUsers);
         });
+        getCurrentUser().then(result => {
+                setCurrentUser(result.data)
+            }
+        )
+
     }, [])
+
 
     const onRowFormOpen = () => {
         setNewRowFormActive(true);
@@ -86,7 +95,6 @@ function Board() {
             })
         })
     }
-
     const onDragEnd = (result, rows, setRows) => {
         if (!result.destination) return;
         const sourceRow = rows.find(row => row.id === result.source.droppableId);
@@ -121,34 +129,34 @@ function Board() {
         <RowsContext.Provider value={{rows, setRows}}>
             <UsersContext.Provider value={{users, setUsers}}>
                 <StyledBoard>
-                {boardName && (
-                    <div>
-                        <div className={'boardHeader'}>
-                            <div className={'boardHeaderActions'}>
-                                <h1 className={'boardName'}>{boardName}</h1>
-                                <button className={'chatButton'} type={"button"} onClick={openChat}/>
+                    {boardName && (
+                        <div>
+                            <div className={'boardHeader'}>
+                                <div className={'boardHeaderActions'}>
+                                    <h1 className={'boardName'}>{boardName}</h1>
+                                    <button className={'chatButton'} type={"button"} onClick={openChat}/>
+                                </div>
+                                <div className={'boardHeaderActions'}>
+                                    <button className={`createTaskButton`} onClick={onTaskFormOpen} type={"button"}>Create Task <AddIcon/></button>
+                                    <button className={'addListButton'} onClick={onRowFormOpen} type={"button"}>Add Row <AddIcon/></button>
+                                </div>
                             </div>
-                            <div className={'boardHeaderActions'}>
-                                <button className={`createTaskButton`} onClick={onTaskFormOpen} type={"button"}>Create Task <AddIcon/></button>
-                                <button className={'addListButton'} onClick={onRowFormOpen} type={"button"}>Add Row <AddIcon/></button>
-                            </div>
+                            <DragDropContext onDragEnd={(result) => onDragEnd(result, rows, setRows)}>
+                                {rows && rows.map(row =>
+                                    <StatusRow key={row.id}
+                                               rowId={row.id}
+                                               rowName={row.title}
+                                               rowColor={row.color}
+                                               tickets={row.tickets}
+                                               deleteRow={removeRow}/>
+                                )}
+                            </DragDropContext>
+                            <NewRowForm open={newRowFormActive} handleClose={onRowFormClose} createRow={createRow}/>
+                            <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows} users={users}/>
+                            <Sidebar boardName={boardName} messengerActive={messengerActive}/>
                         </div>
-                        <DragDropContext onDragEnd={(result) => onDragEnd(result, rows, setRows)}>
-                            {rows && rows.map(row =>
-                                <StatusRow key={row.id}
-                                           rowId={row.id}
-                                           rowName={row.title}
-                                           rowColor={row.color}
-                                           tickets={row.tickets}
-                                           deleteRow={removeRow}/>
-                            )}
-                        </DragDropContext>
-                        <NewRowForm open={newRowFormActive} handleClose={onRowFormClose} createRow={createRow}/>
-                        <NewTaskForm open={newTaskFormActive} handleClose={onTaskFormClose} createTask={createTicket} rows={rows} users={users}/>
-                        <Sidebar boardName={boardName} messengerActive={messengerActive}/>
-                    </div>
-                )}
-            </StyledBoard>
+                    )}
+                </StyledBoard>
             </UsersContext.Provider>
         </RowsContext.Provider>
     );

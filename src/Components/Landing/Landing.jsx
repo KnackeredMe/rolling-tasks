@@ -19,31 +19,31 @@ export class Landing extends Component {
                             Also, it is useful for cooperation with teammates, so you can see the global picture of current work, track progress of solving issues,
                             define and assign teammates, that would be responsible for it and designate the priorities.
                             Finally, you can discuss necessary topics with your teammates “in place” using embedded chat,
-                            so you can roll under your own workflow.Still do not use application?
+                            so you can roll under your own workflow.
                         </p>
                         <p className={'landingText'}>
-                            Type Sign up and become a Roller!
+                            Still do not use application? Type Sign up and become a Roller!
                         </p>
                     </article>
-                    <LandingCard bottom={'5%'} left={'5%'} imageUrl={Rectangle4}>
+                    <LandingCard bottom={'5%'} left={'5%'} imageUrl={Rectangle7}>
                         <div className={'overlay'}>
                             <h2>Studying</h2>
                             <p>Organize your education.</p>
                         </div>
                     </LandingCard>
-                    <LandingCard bottom={'15%'} left={'30%'} imageUrl={Rectangle5}>
+                    <LandingCard bottom={'15%'} left={'30%'} imageUrl={Rectangle6}>
                         <div className={'overlay'}>
                             <h2>Chatting</h2>
                             <p>Discuss necessary issues in related chats with colleagues.</p>
                         </div>
                     </LandingCard>
-                    <LandingCard top={'45%'} right={'30%'} imageUrl={Rectangle6}>
+                    <LandingCard top={'45%'} right={'30%'} imageUrl={Rectangle5}>
                         <div className={'overlay'}>
                             <h2>Planning</h2>
                             <p>Plan your tasks and track progress of solving.</p>
                         </div>
                     </LandingCard>
-                    <LandingCard top={'35%'} right={'5%'} imageUrl={Rectangle7}>
+                    <LandingCard top={'35%'} right={'5%'} imageUrl={Rectangle4}>
                         <div className={'overlay'}>
                             <h2>Teamwork</h2>
                             <p>Cooperate with teammates.</p>

@@ -14,7 +14,6 @@ export default function RegistrationForm({open, handleClose}){
     const [firstNameError, setFirstNameError] = useState('');
     const [lastName, setLastName] = useState('');
     const [lastNameError, setLastNameError] = useState('');
-    const [date, setDate] = useState(null);
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
@@ -38,9 +37,6 @@ export default function RegistrationForm({open, handleClose}){
         setLastNameError('');
     }
 
-    const onChangeDate = (event) => {
-      setDate(event.target.value);
-    }
 
     const onChangeEmail= (event) => {
         setEmail(event.target.value);
@@ -88,9 +84,8 @@ export default function RegistrationForm({open, handleClose}){
             console.log('Registration')
             handleClose();
         })
-        
-    }
 
+    }
     return(
         <StyledDialog open={open}>
             <DialogContent className={'content'}>
@@ -119,29 +114,16 @@ export default function RegistrationForm({open, handleClose}){
                                onChange={onChangeLastName}
                                helperText={lastNameError}
                     />
-                    <label className={'date'}>Date of birth</label>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        className={'date-input'}
-                        type="date"
-                        fullWidth
-                        variant="standard"
-                        onChange={onChangeDate}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
                     <label className={'email'}>Email</label>
                     <TextField className={'email-input'}
-                            autoFocus
-                            margin="dense"
-                            id="email"
-                            type="email"
-                            fullWidth
-                            variant="standard"
-                            onChange={onChangeEmail}
-                           helperText={emailError}
+                               autoFocus
+                               margin="dense"
+                               id="email"
+                               type="email"
+                               fullWidth
+                               variant="standard"
+                               onChange={onChangeEmail}
+                               helperText={emailError}
                     />
                     <label className={'password'}>Password</label>
                     <TextField className={'password-input'}
@@ -155,18 +137,7 @@ export default function RegistrationForm({open, handleClose}){
                                minLength={8}
                                helperText={passwordError}
                     />
-                    <label className={'retype-password'}>Retype password</label>
-                    <TextField className={'retype-password-input'}
-                               autoFocus
-                               margin="dense"
-                               id="retype-password"
-                               type="password"
-                               fullWidth
-                               variant="standard"
-                               onChange={onChangePassword}
-                               minLength={8}
-                    />
-               </div>
+                </div>
             </DialogContent>
             <DialogActions>
                 <Button className={'registrationConfirm'} onClick={handleSubmit}>Become a roller</Button>
