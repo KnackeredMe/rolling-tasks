@@ -102,19 +102,19 @@ function Board() {
             title: draggedTicket.title,
             type: draggedTicket.type,
         }
-        putTicket(body, draggedTicket.id).then(response => {
-            setRows(prevState => {
-                return prevState.map(item => {
-                    if (item.id === result.source.droppableId) {
-                        item.tickets = item.tickets.filter(task => task.id !== result.draggableId);
-                    }
-                    if (item.id === result.destination.droppableId) {
-                        item.tickets.push(response.data);
-                    }
-                    return item;
-                })
+        setRows(prevState => {
+            return prevState.map(item => {
+                if (item.id === result.source.droppableId) {
+                    item.tickets = item.tickets.filter(task => task.id !== result.draggableId);
+                }
+                if (item.id === result.destination.droppableId) {
+                    item.tickets.push(draggedTicket);
+                }
+                return item;
             })
         })
+
+        putTicket(body, draggedTicket.id).then(response => {})
     }
 
     return (
