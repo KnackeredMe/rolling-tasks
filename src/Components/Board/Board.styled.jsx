@@ -59,13 +59,17 @@ export const StyledBoard = styled.div`
     }
   
     .closed {
-      transition: 500ms ease-in;
+      transition: 250ms ease-in;
       transform: translate(100%, 0);
     }
   
     .opened {
       transform: translate(0, 0);
-      transition: 500ms ease-in;
+      transition: 250ms ease-in;
+    }
+  
+    .boardWrapper {
+      padding-bottom: 150px;
     }
   }
 `

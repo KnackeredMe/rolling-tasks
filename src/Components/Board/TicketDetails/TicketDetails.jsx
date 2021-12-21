@@ -21,7 +21,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import EditIcon from '@mui/icons-material/Edit';
 import {RowsContext, UsersContext} from "../Board";
-import {deleteTicket, getTickets, putTicket} from "../../../Store/requests";
+import {deleteTicket, putTicket} from "../../../Store/requests";
 import {validationMessages} from "../../../Utils/constants";
 
 export default function TicketDetails({open, ticket, setCurrentUserName, setCurrentUserSurname}) {
@@ -239,7 +239,7 @@ export default function TicketDetails({open, ticket, setCurrentUserName, setCurr
                                 displayEmpty>
                                 {
                                     users && users.map(assignee =>
-                                        <MenuItem value={assignee.id}>{`${assignee.firstName} ${assignee.lastName}`}</MenuItem>
+                                        <MenuItem key={assignee.id} value={assignee.id}>{assignee.firstName} {assignee.lastName} <img className={'select-user-icon'} src={userIcon} alt={'user'}/></MenuItem>
                                     )
                                 }
                             </Select>

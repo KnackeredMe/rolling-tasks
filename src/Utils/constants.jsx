@@ -72,4 +72,5 @@ export const iconDict = {
 export const validationMessages = {
     required: 'This field is required',
     passwordLength: 'Password length should be at least 8 symbols',
+    authorization: 'Invalid email or password',
 }

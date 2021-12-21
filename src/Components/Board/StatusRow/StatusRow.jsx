@@ -24,7 +24,7 @@ function StatusRow({rowId, rowName, rowColor, tickets, deleteRow}) {
                 </Droppable>
             )}
             <button className={'deleteButton'} onClick={() => deleteRow(rowId)}><DeleteOutlineIcon/></button>
-            <button className={'editButton'} onClick={() => {}}><EditIcon/></button>
+            {/*<button className={'editButton'} onClick={() => {}}><EditIcon/></button>*/}
         </StyledStatusRow>
     );
 }

@@ -161,9 +161,9 @@ export default function NewTaskForm({open, handleClose, createTask, rows, users}
                         onChange={onChangeComplexity}
                         displayEmpty
                     >
-                        <MenuItem className={'select-item'} value={'HARD'}>HARD<KeyboardDoubleArrowUpIcon className={'select-item-icon'} style={{fill: "red"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'HARD'}>Hard<KeyboardDoubleArrowUpIcon className={'select-item-icon'} style={{fill: "red"}}/></MenuItem>
                         <MenuItem className={'select-item'} value={'MEDIUM'}>Medium<KeyboardArrowUpIcon className={'select-item-icon'} style={{fill: "orange"}}/></MenuItem>
-                        <MenuItem className={'select-item'} value={'EASY'}>EASY<KeyboardArrowDownIcon className={'select-item-icon'} style={{fill: "green"}}/></MenuItem>
+                        <MenuItem className={'select-item'} value={'EASY'}>Easy<KeyboardArrowDownIcon className={'select-item-icon'} style={{fill: "green"}}/></MenuItem>
                     </Select>
                     <FormHelperText className={'select-message'}>{complexityError}</FormHelperText>
                 </div>

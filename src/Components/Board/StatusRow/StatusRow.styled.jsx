@@ -5,6 +5,9 @@ export const StyledStatusRow = styled.div`
     position: relative;
     min-height: 60px;
     margin-bottom: 10px;
+    &:last-child {
+      background-color: red;
+    }
     .rowName {
       height: 60px;
       background-color: ${props => props.rowColor};

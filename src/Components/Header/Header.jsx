@@ -51,7 +51,7 @@ function Header() {
                         <Route path={'/board'}>
                             <div className={'navItem'}>
                                 <div className={'current-user'}>
-                                    {`${currentUser.firstName} ${currentUser.lastName}`}
+                                    {currentUser.firstName} {currentUser.lastName}
                                 </div>
                             </div>
                             <div className={'navItem'}>

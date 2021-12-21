@@ -36,6 +36,12 @@ export const StyledDialog = styled(Dialog)`
 
     color: black;
   }
+  
+  .authorizationError {
+    position: absolute;
+    bottom: 55px;
+    right: 188px;
+  }
   .MuiInput-root{
     width: 500px;
     height: 40px;

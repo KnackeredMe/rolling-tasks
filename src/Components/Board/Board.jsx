@@ -5,7 +5,6 @@ import {deleteRow, getBoard, getCurrentUser, postRow, postTickets, putTicket} fr
 import NewRowForm from "../Forms/NewRowForm/NewRowForm";
 import NewTaskForm from "../Forms/NewTaskForm/NewTaskForm";
 import AddIcon from '@mui/icons-material/Add';
-import Messenger from "./Sidebar/Messenger/Messenger";
 import Sidebar from "./Sidebar/Sidebar";
 import {DragDropContext} from "react-beautiful-dnd";
 import {CurrentUserContext} from "../../App";
@@ -130,7 +129,7 @@ function Board() {
             <UsersContext.Provider value={{users, setUsers}}>
                 <StyledBoard>
                     {boardName && (
-                        <div>
+                        <div className={'boardWrapper'}>
                             <div className={'boardHeader'}>
                                 <div className={'boardHeaderActions'}>
                                     <h1 className={'boardName'}>{boardName}</h1>

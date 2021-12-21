@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import {StyledDialog} from "./RollinForm.styled";
 import closeIcon from '../../../Assets/Images/closeIcon.svg'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {authorization} from "../../../Store/requests";
 import {useHistory} from "react-router-dom";
 import {validationMessages} from "../../../Utils/constants";
@@ -15,7 +15,12 @@ export default function RollinForm({open, handleClose}){
     const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [authorizationError, setAuthorizationError] = useState('');
     const history = useHistory();
+
+    useEffect(() => {
+        setAuthorizationError('');
+    }, [email, password])
 
     const onChangeEmail= (event) => {
         setEmail(event.target.value);
@@ -59,6 +64,8 @@ export default function RollinForm({open, handleClose}){
             localStorage.setItem('isAuthenticated', 'true');
             handleClose();
             history.push('/board');
+        }).catch(() => {
+            setAuthorizationError(validationMessages.authorization);
         })
     }
     return(
@@ -91,6 +98,7 @@ export default function RollinForm({open, handleClose}){
                 </div>
             </DialogContent>
             <DialogActions>
+                <span className={'authorizationError'}>{authorizationError}</span>
                 <Button className={'registrationConfirm'} onClick={handleSubmit}>Roll in</Button>
                 <Button className={'close'} onClick={() => handleClose()}>
                     <img src={closeIcon} alt={'close icon'}/>

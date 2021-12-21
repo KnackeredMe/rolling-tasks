@@ -44,6 +44,16 @@ export const postRow = async (body) => {
     return response;
 }
 
+export const putRow = async (body, ticketId) => {
+    const response = await axios.put(`${API_URL}/rows/${ticketId}`, body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : localStorage.getItem('token'),
+        }});
+    console.log(response);
+    return response;
+}
+
 export const getTicket = async (ticketId) => {
     console.log(ticketId)
     const response = await axios.get(`${API_URL}/tickets/${ticketId}`, {

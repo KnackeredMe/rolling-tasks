@@ -34,3 +34,9 @@ code {
   margin-left: auto;
   padding-left: 5px;
 }
+
+.select-user-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}

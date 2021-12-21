@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-    ALL_MESSAGES_HTTP_ENDPOINT,
     CREATE_MESSAGE_SOCKET_ENDPOINT,
     MESSAGES_TOPIC,
     STOMP_HTTP_ENDPOINT,
